@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="500" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.BaseController">
+   <HBox prefHeight="2.0" prefWidth="473.0">
+      <children>
+         <ImageView fx:id="img_close" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../com.experiment.translate.img/关闭_o.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="img_reduce" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../com.experiment.translate.img/取消全屏_o.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="img_expand" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../com.experiment.translate.img/全屏_o.png" />
+            </image>
+         </ImageView>
+      </children>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </HBox>
+   <HBox prefHeight="480.0" prefWidth="496.0">
+      <children>
+         <VBox alignment="TOP_CENTER" prefHeight="470.0" prefWidth="24.0" spacing="5.0">
+            <children>
+               <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="img_translate" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../com.experiment.translate.img/操作-翻译.png" />
+                  </image>
+               </ImageView>
+               <ImageView fx:id="img_recite" fitHeight="46.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../com.experiment.translate.img/记单词.png" />
+                  </image>
+               </ImageView>
+               <ImageView fx:id="img_profile" fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../com.experiment.translate.img/个人头像.png" />
+                  </image>
+               </ImageView>
+            </children>
+         </VBox>
+         <Pane fx:id="container" prefHeight="500.0" prefWidth="500.0" />
+      </children>
+   </HBox>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>

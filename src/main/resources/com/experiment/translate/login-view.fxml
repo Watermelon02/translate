@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import com.experiment.translate.view.ImageButton?>
+<VBox alignment="CENTER" prefHeight="450" prefWidth="350" spacing="30" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.LoginController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../com.experiment.translate.img/全屏_o.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="input_account" maxWidth="260.0" prefHeight="40" prefWidth="220.0" />
+      <PasswordField fx:id="input_password" maxWidth="260.0" prefHeight="40" prefWidth="260.0" />
+      <ImageButton fx:id="img_login" fitHeight="46.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../com.experiment.translate.img/对号.png" />
+         </image>
+      </ImageButton>
+   </children>
+</VBox>
