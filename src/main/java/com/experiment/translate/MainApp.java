@@ -1,7 +1,4 @@
 package com.experiment.translate;
-/**
- * Created by CatScan on 2016/6/19.
- */
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -13,6 +10,8 @@ public class MainApp extends Application {
 
     public static String baseViewID = "BaseView";
     public static String baseViewRes = "base-view.fxml";
+    public static String baseViewCss = "/css/base-view.css";
+
 
     private StageController stageController;
 
@@ -27,8 +26,9 @@ public class MainApp extends Application {
         stageController.setPrimaryStage("primaryStage", primaryStage);
 
         //加载多个舞台，每个界面一个舞台
-        stageController.loadStage(loginViewID, loginViewRes);
-        stageController.loadStage(baseViewID, baseViewRes, StageStyle.UNDECORATED);
+        stageController.loadStage(loginViewID, loginViewRes,StageStyle.UNDECORATED);
+        stageController.loadStage(baseViewID, baseViewRes,baseViewCss,StageStyle.UNDECORATED);
+
         //显示MainView舞台
         stageController.setStage(loginViewID);
     }

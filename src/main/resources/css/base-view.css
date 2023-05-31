@@ -1,0 +1,29 @@
+.sidebar {
+    -fx-background-color: #ececec;
+}
+
+.background-vbox {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #ececec;
+}
+
+/*选中侧边栏选项时改变侧边栏选项的颜色*/
+.selected-image {
+    -fx-effect: dropshadow(three-pass-box, #969696, 10, 0, 0, 0);
+}
+
+/*取消text-area被选中时的蓝色边框*/
+.text-area:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*取消list-view被选中时的蓝色边框*/
+.list-view .list-cell:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-cell-focus-inner-border: transparent;
+}
+

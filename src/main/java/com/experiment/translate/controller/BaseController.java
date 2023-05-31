@@ -18,6 +18,8 @@ public class BaseController extends ControlledStage implements Initializable {
     public static String reciteViewRES = "/recite-view.fxml";
     public static String profileViewID = "ProfileView";
     public static String profileViewRES = "/profile-view.fxml";
+    public static String vocabularyViewID = "VocabularyView";
+    public static String vocabularyViewRes = "/vocabulary-view.fxml";
     @FXML
     ImageView img_close;
     @FXML
@@ -30,15 +32,22 @@ public class BaseController extends ControlledStage implements Initializable {
     ImageView img_recite;
     @FXML
     ImageView img_profile;
+
+    @FXML
+    ImageView img_vocabulary;
     @FXML
     Pane container;
+    //侧边栏被选中的ImageView
+    private ImageView selectedImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ViewController viewController = new ViewController(container);
-        viewController.addChild(translateViewID,translateViewRES);
-        viewController.addChild(reciteViewID,reciteViewRES);
-        viewController.addChild(profileViewID,profileViewRES);
+        viewController.addChild(translateViewID, translateViewRES);
+        viewController.addChild(reciteViewID, reciteViewRES);
+        viewController.addChild(profileViewID, profileViewRES);
+        viewController.addChild(profileViewID, profileViewRES);
+        viewController.addChild(vocabularyViewID, vocabularyViewRes);
         viewController.loadChild(translateViewID);
         img_close.setOnMouseClicked(mouseEvent -> {
             //关闭窗口，相当于点击窗口关闭图标
@@ -54,15 +63,28 @@ public class BaseController extends ControlledStage implements Initializable {
         });
         img_translate.setOnMouseClicked(mouseEvent -> {
             viewController.loadChild(translateViewID);
+            handleImageClick(img_translate);
         });
         img_recite.setOnMouseClicked(mouseEvent -> {
             viewController.loadChild(reciteViewID);
+            handleImageClick(img_recite);
         });
         img_profile.setOnMouseClicked(mouseEvent -> {
             viewController.loadChild(profileViewID);
+            handleImageClick(img_profile);
         });
-
+        img_vocabulary.setOnMouseClicked(mouseEvent -> {
+            viewController.loadChild(vocabularyViewID);
+            handleImageClick(img_vocabulary);
+        });
     }
 
+    private void handleImageClick(ImageView imageView) {
+        if (selectedImage != null) {
+            selectedImage.getStyleClass().remove("selected-image");
+        }
 
+        selectedImage = imageView;
+        selectedImage.getStyleClass().add("selected-image");
+    }
 }

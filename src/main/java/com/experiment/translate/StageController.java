@@ -54,7 +54,7 @@ public class StageController {
      * @param styles    可变参数，init使用的初始化样式资源设置
      * @return 是否加载成功
      */
-    public boolean loadStage(String name, String resources, StageStyle... styles) {
+    public boolean loadStage(String name, String resources,StageStyle... styles) {
         try {
             //加载FXML资源文件
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resources));
@@ -68,6 +68,48 @@ public class StageController {
             Scene tempScene = new Scene(tempPane);
             Stage tempStage = new Stage();
             tempStage.setScene(tempScene);
+
+            //配置initStyle
+            for (StageStyle style : styles) {
+                tempStage.initStyle(style);
+            }
+
+            //将设置好的Stage放到HashMap中
+            this.addStage(name, tempStage);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 加载窗口地址，需要fxml资源文件属于独立的窗口并用Pane容器或其子类继承
+     *
+     * @param name      注册好的fxml窗口的文件
+     * @param resources fxml资源地址
+     * @param styles    可变参数，init使用的初始化样式资源设置
+     * @param css       要加载的css资源
+     * @return 是否加载成功
+     */
+    public boolean loadStage(String name, String resources,String css,StageStyle... styles) {
+        try {
+            //加载FXML资源文件
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resources));
+            Pane tempPane = (Pane) loader.load();
+
+            //通过Loader获取FXML对应的ViewCtr，并将本StageController注入到ViewCtr中
+            ControlledStage controlledStage = (ControlledStage) loader.getController();
+            controlledStage.setStageController(this);
+
+            //构造对应的Stage
+            Scene tempScene = new Scene(tempPane);
+            Stage tempStage = new Stage();
+            tempStage.setScene(tempScene);
+
+            //加载对应的css
+            tempScene.getStylesheets().add(getClass().getResource(css).toExternalForm());
 
             //配置initStyle
             for (StageStyle style : styles) {
