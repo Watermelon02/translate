@@ -14,6 +14,6 @@ module com.experiment.translate {
     opens com.experiment.translate.controller to javafx.fxml;
     exports com.experiment.translate.connect;
     opens com.experiment.translate.connect to javafx.fxml;
-    exports com.experiment.translate.view;
-    opens com.experiment.translate.view to javafx.fxml;
+    exports com.experiment.translate.customview;
+    opens com.experiment.translate.customview to javafx.fxml;
 }

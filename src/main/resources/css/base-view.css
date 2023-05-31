@@ -8,6 +8,12 @@
     -fx-background-color: #ececec;
 }
 
+.background-translate-btn{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #2233e1;
+}
+
 /*选中侧边栏选项时改变侧边栏选项的颜色*/
 .selected-image {
     -fx-effect: dropshadow(three-pass-box, #969696, 10, 0, 0, 0);
@@ -17,7 +23,7 @@
 .text-area:focused {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: transparent;
+    -fx-border-color: #2233e1;
 }
 
 /*取消list-view被选中时的蓝色边框*/

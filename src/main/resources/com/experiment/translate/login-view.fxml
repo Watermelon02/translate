@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<?import com.experiment.translate.view.ImageButton?>
+<?import com.experiment.translate.customview.ImageButton?>
 <VBox alignment="CENTER" prefHeight="450" prefWidth="350" spacing="30" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

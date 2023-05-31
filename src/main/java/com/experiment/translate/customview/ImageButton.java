@@ -1,4 +1,4 @@
-package com.experiment.translate.view;
+package com.experiment.translate.customview;
 
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
