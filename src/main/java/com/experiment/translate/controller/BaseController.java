@@ -3,6 +3,7 @@ package com.experiment.translate.controller;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
 import com.experiment.translate.helper.ViewController;
+import com.experiment.translate.viewmodel.TranslateViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -11,15 +12,10 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.experiment.translate.MainApp.*;
+
 public class BaseController extends ControlledStage implements Initializable {
-    public static String translateViewID = "TranslateView";
-    public static String translateViewRES = "/translate-view.fxml";
-    public static String reciteViewID = "ReciteView";
-    public static String reciteViewRES = "/recite-view.fxml";
-    public static String profileViewID = "ProfileView";
-    public static String profileViewRES = "/profile-view.fxml";
-    public static String vocabularyViewID = "VocabularyView";
-    public static String vocabularyViewRes = "/vocabulary-view.fxml";
+
     @FXML
     ImageView img_close;
     @FXML
@@ -43,7 +39,7 @@ public class BaseController extends ControlledStage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ViewController viewController = new ViewController(container);
-        viewController.addChild(translateViewID, translateViewRES);
+        viewController.addChild(translateViewID, translateViewRES,new TranslateViewModel());
         viewController.addChild(reciteViewID, reciteViewRES);
         viewController.addChild(profileViewID, profileViewRES);
         viewController.addChild(profileViewID, profileViewRES);
