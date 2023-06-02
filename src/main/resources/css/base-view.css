@@ -2,16 +2,55 @@
     -fx-background-color: #ececec;
 }
 
-.background-vbox {
+.recite-background-vbox {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-background-color: #ececec;
 }
 
+.translate-background-vbox {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #ececec;
+}
+
+.translate-background-vbox:hover {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #e1e1e1;
+}
+
+.background-unselected-btn{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.background-selected-btn{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #505eec;
+    -fx-background-color: #ececec;
+}
+
+.background-selected-btn:hover{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #505eec;
+    -fx-background-color: #cecece;
+}
+
 .background-translate-btn{
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-background-color: #2233e1;
+    -fx-text-fill: #ececec;
+    -fx-background-color: #505eec;
+}
+
+.background-translate-btn:hover{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #ececec;
+    -fx-background-color: #1829ec;
 }
 
 /*选中侧边栏选项时改变侧边栏选项的颜色*/
@@ -23,7 +62,7 @@
 .text-area:focused {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: #2233e1;
+    -fx-border-color: #505eec;
 }
 
 /*取消list-view被选中时的蓝色边框*/
@@ -32,4 +71,10 @@
     -fx-faint-focus-color: transparent;
     -fx-cell-focus-inner-border: transparent;
 }
+
+
+.choice-box{
+    -fx-background-color: #dedede;
+}
+
 

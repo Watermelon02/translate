@@ -57,6 +57,7 @@ public class BaseController extends ControlledStage implements Initializable {
             //最小化窗口，相当于点击窗口上的最小化图标
             myController.getStage(MainApp.baseViewID).setIconified(true);
         });
+        handleImageClick(img_translate);
         img_translate.setOnMouseClicked(mouseEvent -> {
             viewController.loadChild(translateViewID);
             handleImageClick(img_translate);

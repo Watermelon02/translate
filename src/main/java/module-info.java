@@ -8,6 +8,7 @@ module com.experiment.translate {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.google.gson;
+    requires javafx.media;
 
     opens com.experiment.translate to javafx.fxml;
     exports com.experiment.translate;

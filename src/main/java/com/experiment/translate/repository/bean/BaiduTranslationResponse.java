@@ -2,7 +2,7 @@ package com.experiment.translate.repository.bean;
 
 import java.util.List;
 
-public class TranslationResponse {
+public class BaiduTranslationResponse {
     private String from;
     private String to;
     private List<Translation> trans_result;
