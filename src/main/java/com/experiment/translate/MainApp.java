@@ -21,7 +21,8 @@ public class MainApp extends Application {
     public static String vocabularyViewID = "VocabularyView";
     public static String vocabularyViewRes = "/vocabulary-view.fxml";
 
-    private StageController stageController;
+    public static StageController stageController;
+    public static long userId = 1;
 
 
     @Override
@@ -33,11 +34,10 @@ public class MainApp extends Application {
         //将主舞台交给控制器处理
         stageController.setPrimaryStage("primaryStage", primaryStage);
 
-        //加载多个舞台，每个界面一个舞台
+        //加载登录stage，每个界面一个舞台
         stageController.loadStage(loginViewID, loginViewRes, StageStyle.UNDECORATED);
-        stageController.loadStage(baseViewID, baseViewRes, baseViewCss, StageStyle.UNDECORATED);
 
-        //显示MainView舞台
+        //显示loginView舞台
         stageController.setStage(loginViewID);
     }
 

@@ -14,5 +14,6 @@ public class ProfileController extends ControlledStage implements Initializable 
     Text text_name;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        int a = 1;
     }
 }

@@ -1,5 +1,7 @@
 package com.experiment.lib_retrofit;
 
+import com.google.gson.Gson;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -31,17 +33,17 @@ public class RetrofitBuilder {
     }
 
     private String baseUrl;
-//    private Gson gson = new Gson();
+    private Gson gson = new Gson();
 
     public RetrofitBuilder baseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
         return this;
     }
 
-//    public RetrofitBuilder addGson(Gson gson) {
-//        this.gson = gson;
-//        return this;
-//    }
+    public RetrofitBuilder addGson(Gson gson) {
+        this.gson = gson;
+        return this;
+    }
 
     public Retrofit build() {
         return new Retrofit(baseUrl);

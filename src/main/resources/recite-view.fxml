@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,41 +11,54 @@
     <children>
         <HBox prefHeight="73.0" prefWidth="520.0">
             <children>
-                <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of words to be learned：" wrappingWidth="188.0" />
-                <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="26" wrappingWidth="67.21630859375" />
+                <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of words to be learned：" wrappingWidth="188.0">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin></Text>
+                <Text fx:id="text_num_of_words" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="26" wrappingWidth="67.21630859375">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin></Text>
             <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="265.0">
                <children>
-                  <ChoiceBox maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="word_set_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></ChoiceBox>
                </children>
             </VBox>
             </children>
         </HBox>
         <VBox alignment="CENTER" prefHeight="396.0" prefWidth="520.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Word" textAlignment="CENTER" wrappingWidth="518.8837890625">
+                <Text fx:id="text_word_id" strokeType="OUTSIDE" strokeWidth="0.0" text="New Word" textAlignment="CENTER" wrappingWidth="518.8837890625">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/yin biao/" textAlignment="CENTER" wrappingWidth="521.21630859375" />
+                <Text fx:id="text_word_phonetic" strokeType="OUTSIDE" strokeWidth="0.0" text="/yin biao/" textAlignment="CENTER" wrappingWidth="521.21630859375" />
+            <Text fx:id="text_word_explanation" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="516.1376953125" />
             </children>
         </VBox>
-        <HBox prefHeight="100.0" prefWidth="200.0">
+        <HBox prefHeight="70.0" prefWidth="520.0" spacing="20.0">
             <children>
-                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="recite-background-vbox">
+                <VBox fx:id="btn_remember" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="translate-background-vbox">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="remember" textAlignment="CENTER" wrappingWidth="260.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="remember" textAlignment="CENTER" wrappingWidth="230.0">
                             <font>
-                                <Font size="15.0" />
+                                <Font size="20.0" />
                             </font>
                         </Text>
                     </children>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="recite-background-vbox">
+                <VBox fx:id="btn_forget" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="translate-background-vbox">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="forget" textAlignment="CENTER" wrappingWidth="260.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="forget" textAlignment="CENTER" wrappingWidth="230.0">
                             <font>
-                                <Font size="15.0" />
+                                <Font size="20.0" />
                             </font>
                         </Text>
                     </children>

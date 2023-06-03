@@ -29,7 +29,6 @@ public abstract class ObservableMethod<ReturnT> extends ParseArgsMethod<ReturnT>
             return new ObservableMethod<ReturnT>() {
                 @Override
                 public Observable<ReturnT> invoke(Object[] args) {
-
                     return Observable.create(new ObservableOnSubscribe<ReturnT>() {
                         @Override
                         public void subscribe(ObservableEmitter<ReturnT> observableEmitter) {

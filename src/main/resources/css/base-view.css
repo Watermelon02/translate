@@ -2,12 +2,6 @@
     -fx-background-color: #ececec;
 }
 
-.recite-background-vbox {
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-background-color: #ececec;
-}
-
 .translate-background-vbox {
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
@@ -60,6 +54,13 @@
 
 /*取消text-area被选中时的蓝色边框*/
 .text-area:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: #505eec;
+}
+
+/*取消list-view被选中时的蓝色边框*/
+.list-view{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-border-color: #505eec;

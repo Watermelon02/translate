@@ -1,4 +1,4 @@
-package com.experiment.translate.repository.service;
+package com.experiment.translate.repository.remote.service;
 
 import com.experiment.lib_react.observable.Observable;
 import com.experiment.lib_retrofit.RetrofitBuilder;

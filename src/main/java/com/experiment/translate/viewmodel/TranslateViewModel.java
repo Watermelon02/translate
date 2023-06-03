@@ -5,14 +5,13 @@ import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.lib_react.scheduler.NewThreadScheduler;
 import com.experiment.lib_retrofit.Retrofit;
 import com.experiment.translate.helper.SignGenerator;
-import com.experiment.translate.repository.bean.BaiduTranslationResponse;
 import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
-import com.experiment.translate.repository.service.BaiduTranslateService;
-import com.experiment.translate.repository.service.YoudaoTranslateService;
+import com.experiment.translate.repository.remote.service.BaiduTranslateService;
+import com.experiment.translate.repository.remote.service.YoudaoTranslateService;
 
 public class TranslateViewModel implements ViewModel {
-//    public Flow<BaiduTranslationResponse> toText;
-public Flow<YoudaoTranslationResponse> toText;
+    //    public Flow<BaiduTranslationResponse> toText;
+    public Flow<YoudaoTranslationResponse> toText;
 
     private Retrofit baiduRetrofit = new Retrofit("http://api.fanyi.baidu.com/");
     private Retrofit youdaoRetrofit = new Retrofit("https://openapi.youdao.com/");

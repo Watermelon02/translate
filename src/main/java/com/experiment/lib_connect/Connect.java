@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 public class Connect {
     private static List<String> cookies;
+    private static final Gson gson = new Gson();
 
     public static <T> Response<T> get(String url, Class<T> responseType) {
         try {
@@ -37,7 +38,7 @@ public class Connect {
                 builder.append(line);
             }
             reader.close();
-            T response = new Gson().fromJson(builder.toString(), responseType);
+            T response = gson.fromJson(builder.toString(), responseType);
             return new Response<>(response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +75,7 @@ public class Connect {
                 builder.append(line);
             }
             reader.close();
-            T response = new Gson().fromJson(builder.toString(), responseType);
+            T response = gson.fromJson(builder.toString(), responseType);
             return new Response<>(response);
         } catch (Exception e) {
             e.printStackTrace();

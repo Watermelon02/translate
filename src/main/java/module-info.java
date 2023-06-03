@@ -9,6 +9,7 @@ module com.experiment.translate {
     requires eu.hansolo.tilesfx;
     requires com.google.gson;
     requires javafx.media;
+    requires java.sql;
 
     opens com.experiment.translate to javafx.fxml;
     exports com.experiment.translate;
@@ -22,4 +23,6 @@ module com.experiment.translate {
     //解决Gson解析问题
     opens com.experiment.translate.repository.bean to com.google.gson;
     exports com.experiment.translate.repository.bean to com.google.gson;
+    exports com.experiment.translate.repository.local.dao to com.google.gson;
+    opens com.experiment.translate.repository.local.dao to com.google.gson;
 }
