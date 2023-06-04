@@ -3,7 +3,7 @@ package com.experiment.translate.controller;
 import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.ViewController;
+import com.experiment.translate.helper.ViewModelController;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.viewmodel.ReciteViewModel;
@@ -34,39 +34,69 @@ public class ReciteController extends ControlledStage implements Initializable {
     VBox btn_remember;
     @FXML
     VBox btn_forget;
-    private int index = 0;
-    //当前选中的单词集
-    private WordSet currentWordSet;
-    //当前选中的单词
-    private Word currentWord;
+    private ReciteViewModel viewModel;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        viewModel = (ReciteViewModel) ViewModelController.getInstance().getViewModel(MainApp.reciteViewID);
+        //界面初始化时获取要背的单词列表信息
+        viewModel.fetchWordSetList();
+        viewModel.currentWordSetList.subscribe(new OnNextObserver<List<WordSet>>() {
+            @Override
+            public void onNext(List<WordSet> wordSets) {
+                handleWordListChange(wordSets);
+            }
+        });
+        viewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
+            @Override
+            public void onNext(WordSet wordSet) {
+                handleWordSetChange(wordSet);
+            }
+        });
+        viewModel.currentWord.subscribe(new OnNextObserver<Word>() {
+            @Override
+            public void onNext(Word word) {
+                handleWordChange(word);
+            }
+        });
+        viewModel.index.subscribe(new OnNextObserver<Integer>() {
+            @Override
+            public void onNext(Integer index) {
+                int totalWordNum = viewModel.currentWordSet.getValue().getWordList().size();
+                text_num_of_words.setText(String.valueOf(totalWordNum - index-1));
+            }
+        });
+    }
 
     public void handleWordListChange(List<WordSet> wordSets) {
         List<String> setNames = new ArrayList<>();
         for (WordSet wordSet : wordSets) {
             setNames.add(wordSet.getSetName());
         }
+        word_set_choice.setValue(wordSets.get(0).getSetName());
         // 设置选项列表
         word_set_choice.setItems(FXCollections.observableArrayList(setNames));
-        refreshWord(wordSets.get(0));
         // 选择项改变时的监听事件
         word_set_choice.setOnAction(event -> {
-            index = 0;
             for (int i = 0; i < wordSets.size(); i++) {
                 WordSet wordSet = wordSets.get(i);
                 if (wordSet.getSetName().equals(word_set_choice.getValue())) {
-                    btn_forget.setOpacity(1);
-                    btn_remember.setOpacity(1);
-                    currentWordSet = wordSet;
-                    refreshWord(currentWordSet);
+                    viewModel.currentWordSet.onNext(wordSet);
                 }
             }
         });
+        viewModel.currentWordSet.onNext(wordSets.get(0));
+    }
+
+    public void handleWordSetChange(WordSet wordSet) {
+        viewModel.index.setValue(0);
+        word_set_choice.setValue(wordSet.getSetName());
         btn_remember.setOnMouseClicked(event -> {
-            index++;
-            if (index+1<=currentWordSet.getWordList().size()){
-                refreshWord(currentWordSet);
-            }else {//背完当前单词集
-                text_num_of_words.setText("0");
+            int index = viewModel.index.getValue();
+            if (index + 1 < wordSet.getWordList().size()) {
+                viewModel.index.setValue(index + 1);
+                viewModel.currentWord.onNext(wordSet.getWordList().get(index + 1));
+            } else {//背完当前单词集
                 text_word_id.setText("Congratulations！");
                 text_word_phonetic.setText("完成任务");
                 text_word_explanation.setText("");
@@ -74,46 +104,26 @@ public class ReciteController extends ControlledStage implements Initializable {
                 btn_remember.setOpacity(0);
             }
         });
-        btn_forget.setOnMouseClicked(event -> {
-            text_word_phonetic.setText(currentWord.getBasicPhonetic());
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0;i<currentWord.getExplanation().size();i++){
-                sb.append(currentWord.getExplanation().get(i));
-                sb.append(" ");
-            }
-            text_word_explanation.setText(sb.toString());
-        });
+        btn_forget.setOpacity(1);
+        btn_remember.setOpacity(1);
+        viewModel.currentWord.onNext(wordSet.getWordList().get(viewModel.index.getValue()));
     }
 
     /**
      * 刷新显示的单词已经相关的其他视图信息
      */
-    public void refreshWord(WordSet wordSet) {
-        int numsOfWordsLast = wordSet.getWordList().size() - index;
-        currentWord = wordSet.getWordList().get(index);
-        word_set_choice.setValue(wordSet.getSetName());
-        text_num_of_words.setText(String.valueOf(numsOfWordsLast));
-        text_word_id.setText(currentWord.getWord_id());
+    public void handleWordChange(Word word) {
+        text_word_id.setText(word.getWord_id());
         text_word_phonetic.setText("");
         text_word_explanation.setText("");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ReciteViewModel viewModel = (ReciteViewModel) ViewController.getViewModel(MainApp.reciteViewID);
-        //界面初始化时获取要背的单词列表信息
-        viewModel.fetchWordSet().subscribe(new OnNextObserver<List<WordSet>>() {
-            @Override
-            public void onNext(List<WordSet> wordSets) {
-                currentWordSet = wordSets.get(0);
-                handleWordListChange(wordSets);
+        btn_forget.setOnMouseClicked(event -> {
+            text_word_phonetic.setText(word.getBasicPhonetic());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < word.getExplanation().size(); i++) {
+                sb.append(word.getExplanation().get(i));
+                sb.append(" ");
             }
-
-            @Override
-            public void onError(Throwable throwable) {
-                super.onError(throwable);
-                    throwable.printStackTrace();
-            }
+            text_word_explanation.setText(sb.toString());
         });
     }
 }

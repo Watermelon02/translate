@@ -3,8 +3,8 @@ package com.experiment.translate.controller;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
 import com.experiment.translate.helper.ViewController;
-import com.experiment.translate.viewmodel.ReciteViewModel;
-import com.experiment.translate.viewmodel.TranslateViewModel;
+import com.experiment.translate.helper.ViewModelController;
+import com.experiment.translate.viewmodel.BaseViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -39,9 +39,10 @@ public class BaseController extends ControlledStage implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        BaseViewModel viewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(baseViewID);
         ViewController viewController = new ViewController(container);
-        viewController.addChild(translateViewID, translateViewRES,new TranslateViewModel());
-        viewController.addChild(reciteViewID, reciteViewRES,new ReciteViewModel());
+        viewController.addChild(translateViewID, translateViewRES);
+        viewController.addChild(reciteViewID, reciteViewRES);
         viewController.addChild(profileViewID, profileViewRES);
         viewController.addChild(vocabularyViewID, vocabularyViewRes);
         viewController.loadChild(translateViewID);

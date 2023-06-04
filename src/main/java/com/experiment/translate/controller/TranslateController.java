@@ -3,7 +3,7 @@ package com.experiment.translate.controller;
 import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.ViewController;
+import com.experiment.translate.helper.ViewModelController;
 import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
 import com.experiment.translate.viewmodel.TranslateViewModel;
 import javafx.fxml.FXML;
@@ -39,7 +39,7 @@ public class TranslateController extends ControlledStage implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TranslateViewModel vm = (TranslateViewModel) ViewController.getViewModel(MainApp.translateViewID);
+        TranslateViewModel vm = (TranslateViewModel) ViewModelController.getInstance().getViewModel(MainApp.translateViewID);
 //        vm.toText.subscribe(new OnNextObserver<BaiduTranslationResponse>() {
 //            @Override
 //            public void onNext(BaiduTranslationResponse baiduTranslationResponse) {

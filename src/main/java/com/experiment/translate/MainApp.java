@@ -24,7 +24,6 @@ public class MainApp extends Application {
     public static StageController stageController;
     public static long userId = 1;
 
-
     @Override
     public void start(Stage primaryStage) {
         primaryStage.initStyle(StageStyle.UNDECORATED);

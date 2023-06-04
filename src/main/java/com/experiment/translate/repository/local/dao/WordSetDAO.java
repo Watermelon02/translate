@@ -29,7 +29,7 @@ public class WordSetDAO {
         }
         //再向ws_w表中依次插入该单词集包含的单词关系
         String ws_w_sql = "INSERT INTO ws_w (word_set_id, word_id) VALUES (?, ?)";
-        for (Word word : wordSet.getWordList()){
+        for (Word word : wordSet.getWordList()) {
             try (PreparedStatement statement = connection.prepareStatement(ws_w_sql)) {
                 statement.setLong(1, wordSet.getWordSetId());
                 statement.setString(2, word.getWord_id());
@@ -54,7 +54,7 @@ public class WordSetDAO {
                 //再向ws_w表中依次查询该单词集包含的单词关系，得到对应单词并插入WordSet中的list中
                 String ws_w_sql = "SELECT * FROM ws_w WHERE word_set_id = ?";
                 PreparedStatement statement2 = connection.prepareStatement(ws_w_sql);
-                statement2.setLong(1,wordSetId);
+                statement2.setLong(1, wordSetId);
                 ResultSet words = statement2.executeQuery();
                 while (words.next()) {
                     wordSet.getWordList().add(getWordById(words.getString("word_id")));
@@ -68,6 +68,29 @@ public class WordSetDAO {
         return null;
     }
 
+    public void insertWordIntoWordSet(Word word, WordSet wordSet) {
+        String sql = "INSERT INTO ws_w(word_set_id,word_id) VALUES(?,?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1,wordSet.getWordSetId());
+            statement.setString(2,word.getWord_id());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // 处理异常
+        }
+    }
+
+    public void deleteWordFromWordSet(Word word,WordSet wordSet){
+        String sql = "DELETE FROM ws_w WHERE word_set_id = ? AND word_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1,wordSet.getWordSetId());
+            statement.setString(2,word.getWord_id());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // 处理异常
+        }
+    }
 
     private Word getWordById(String id) {
         String sql = "SELECT * FROM word WHERE word_id = ?";

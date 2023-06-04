@@ -14,9 +14,9 @@ public abstract class OnNextObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable throwable) {
         try {
-
-        }catch (Exception e){
             throwable.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

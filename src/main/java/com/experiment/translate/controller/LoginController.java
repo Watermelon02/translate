@@ -2,12 +2,17 @@ package com.experiment.translate.controller;
 
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
+import com.experiment.translate.customview.CustomColorAnimation;
+import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +25,7 @@ public class LoginController extends ControlledStage implements Initializable {
     @FXML
     PasswordField input_password;
     @FXML
-    ImageView img_login;
+    VBox img_login;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,5 +36,13 @@ public class LoginController extends ControlledStage implements Initializable {
             myController.setStage(baseViewID);
             myController.getStage(MainApp.loginViewID).close();
         });
+        img_login.setClip(new Circle(img_login.getPrefWidth()/2,img_login.getPrefHeight()/2,30));
+        CustomColorAnimation animation = new CustomColorAnimation(Duration.seconds(4), img_login, Color.valueOf("#A6FFCB"), Color.valueOf("#1FA2FF"));
+        animation.setCycleCount(Animation.INDEFINITE);
+        animation.setAutoReverse(true);
+        // 启动动画
+        animation.play();
     }
+
+
 }

@@ -58,4 +58,8 @@ public class FlowEmitter<T> implements Disposable, ObservableEmitter<T> {
             }
         }
     }
+
+    public void clearAllObservers(){
+        observers.clear();
+    }
 }

@@ -52,7 +52,11 @@
     -fx-effect: dropshadow(three-pass-box, #969696, 10, 0, 0, 0);
 }
 
-/*取消text-area被选中时的蓝色边框*/
+.text-area{
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+/*改变text-area被选中时的蓝色边框的颜色*/
 .text-area:focused {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -63,11 +67,20 @@
 .list-view{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: #505eec;
+    -fx-border-color: #cecece;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 
 /*取消list-view被选中时的蓝色边框*/
-.list-view .list-cell:focused {
+.list-view  {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-cell-focus-inner-border: transparent;
+}
+
+.list-cell:focused{
+    -fx-background-color: #ececec;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-cell-focus-inner-border: transparent;
@@ -76,6 +89,39 @@
 
 .choice-box{
     -fx-background-color: #dedede;
+    -fx-opacity: 0.8;
+}
+
+.text-field{
+    -fx-background-color: transparent; /* 取消背景颜色 */
+    -fx-border-color: transparent; /* 取消边框颜色 */
+}
+.list-cell {
+    -fx-text-fill: #00000080;
+    -fx-background-color: white;
+    -fx-border-color: #eaeaea;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-insets: 0 10 0 10;
+}
+
+.shape-circle{
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50px;
+}
+
+.login-input{
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+}
+
+/*移除顶部栏*/
+.dialog-pane  {
+    -fx-padding: 0;
+}
+
+.dialog-pane .header .graphic {
+    visibility: hidden;
+    -fx-padding: 0;
 }
 
 
