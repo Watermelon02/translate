@@ -31,7 +31,9 @@ public class VocabularyController extends ControlledStage implements Initializab
     @FXML
     ChoiceBox<String> vocabulary_word_set_choice;
     @FXML
-    TextFlow text_near_synonym;
+    Text text_near_synonym;
+    @FXML
+    Text text_examples;
 
     @FXML
     ListView<Word> word_list;
@@ -41,7 +43,7 @@ public class VocabularyController extends ControlledStage implements Initializab
     @FXML
     Text vocabulary_text_word_phonetic;
     @FXML
-    TextField vocabulary_text_word_explanation;
+    Text vocabulary_text_word_explanation;
 
     @FXML
     Pane btn_next;

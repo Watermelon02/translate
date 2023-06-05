@@ -5,29 +5,43 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="450" prefWidth="350" spacing="30" xmlns="http://javafx.com/javafx/20.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.LoginController">
+<VBox alignment="CENTER" prefHeight="450" prefWidth="350" spacing="30" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.LoginController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../com.experiment.translate.img/全屏_o.png"/>
-            </image>
-        </ImageView>
-        <TextField fx:id="input_account" maxWidth="260.0" prefHeight="40" prefWidth="220.0" styleClass="login-input"/>
-        <PasswordField fx:id="input_password" maxWidth="260.0" prefHeight="40" prefWidth="260.0"
-                       styleClass="login-input"/>
-        <VBox fx:id="img_login" alignment="CENTER" maxHeight="60" maxWidth="60" prefHeight="60.0" prefWidth="60.0"
-              styleClass="shape-circle">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../../../com.experiment.translate.img/全屏_o.png" />
+                  </image>
+              </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Translate">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+        <TextField fx:id="input_account" maxWidth="260.0" prefHeight="40" prefWidth="220.0"/>
+        <PasswordField fx:id="input_password" maxWidth="260.0" prefHeight="40" prefWidth="260.0" styleClass="login-input" />
+        <VBox fx:id="img_login" alignment="CENTER" maxHeight="60" maxWidth="60" prefHeight="60.0" prefWidth="60.0" styleClass="shape-circle">
             <ImageView fitHeight="31.0" fitWidth="33.0">
                 <image>
-                    <Image url="@../../../com.experiment.translate.img/尾巴箭头右.png"/>
+                    <Image url="@../../../com.experiment.translate.img/尾巴箭头右.png" />
                 </image>
             </ImageView>
         </VBox>
+      <HBox prefHeight="29.0" prefWidth="297.0">
+         <children>
+            <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="register " textAlignment="CENTER" wrappingWidth="310.21630859375" />
+         </children>
+      </HBox>
     </children>
 </VBox>

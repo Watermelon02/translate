@@ -9,13 +9,13 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
-public class CustomColorAnimation extends Transition {
+public class DyanamicColorAnimation extends Transition {
 
     private Region target;
     private Color startColor;
     private Color endColor;
 
-    public CustomColorAnimation(Duration duration, Region target, Color startColor, Color endColor) {
+    public DyanamicColorAnimation(Duration duration, Region target, Color startColor, Color endColor) {
         setCycleDuration(duration);
         this.target = target;
         this.startColor = startColor;

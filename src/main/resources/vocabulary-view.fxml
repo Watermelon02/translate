@@ -3,124 +3,129 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <HBox maxHeight="560.0" maxWidth="520.0" minHeight="560.0" minWidth="520.0" prefHeight="560.0" prefWidth="520.0"
       xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.experiment.translate.controller.VocabularyController">
-    <children>
-        <ListView fx:id="word_list" maxWidth="100.0" minWidth="100.0" prefHeight="560.0" prefWidth="100.0"
-                  styleClass="list-view ">
-            <HBox.margin>
-                <Insets right="20.0"/>
-            </HBox.margin>
-        </ListView>
-        <VBox maxWidth="280.0" minWidth="280.0" prefHeight="560.0" prefWidth="280.0">
+    <ListView fx:id="word_list" maxWidth="100.0" minWidth="100.0" prefHeight="560.0" prefWidth="100.0"
+              styleClass="list-view ">
+        <HBox.margin>
+            <Insets right="20.0"/>
+        </HBox.margin>
+    </ListView>
+    <VBox maxWidth="280.0" minWidth="280.0" prefHeight="560.0" prefWidth="280.0">
+        <Text fx:id="vocabulary_text_word_id" strokeType="OUTSIDE" strokeWidth="0.0" text="Word"
+              wrappingWidth="268.21630859375">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Text>
+        <AnchorPane prefHeight="31.0" prefWidth="280.0">
             <children>
-                <Text fx:id="vocabulary_text_word_id" strokeType="OUTSIDE" strokeWidth="0.0" text="Word"
-                      wrappingWidth="268.21630859375">
-                    <font>
-                        <Font size="30.0"/>
-                    </font>
-                </Text>
-                <Text fx:id="vocabulary_text_word_phonetic" strokeType="OUTSIDE" strokeWidth="0.0" text="\\yin biao\"
-                      wrappingWidth="202.21630859375"/>
-                <VBox prefHeight="158.0" prefWidth="359.0">
-                    <children>
-                        <Text fill="#2233e1" strokeType="OUTSIDE" strokeWidth="0.0" text="Meaning"/>
-                        <TextField fx:id="vocabulary_text_word_explanation" alignment="TOP_LEFT" editable="false"
-                                   prefHeight="147.0" prefWidth="359.0">
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                            </padding>
-                        </TextField>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="30.0"/>
-                    </VBox.margin>
-                </VBox>
-                <VBox prefHeight="158.0" prefWidth="359.0">
-                    <children>
-                        <Text fill="#2233e1" strokeType="OUTSIDE" strokeWidth="0.0" text="Examples"/>
-                        <TextFlow prefHeight="147.0" prefWidth="359.0"/>
-                    </children>
-                </VBox>
-                <VBox prefHeight="158.0" prefWidth="359.0">
-                    <children>
-                        <Text fill="#2233e1" strokeType="OUTSIDE" strokeWidth="0.0" text="Near-synonym"/>
-                        <TextFlow fx:id="text_near_synonym" prefHeight="147.0" prefWidth="359.0"/>
-                    </children>
-                </VBox>
+                <Text fx:id="vocabulary_text_word_phonetic" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="\\yin biao\" wrappingWidth="80.0"/>
+                <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="82.0" layoutY="2.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@com.experiment.translate.img/声音%20(1).png"/>
+                    </image>
+                </ImageView>
             </children>
+        </AnchorPane>
+        <VBox prefHeight="158.0" prefWidth="359.0">
+            <VBox.margin>
+                <Insets top="30.0"/>
+            </VBox.margin>
+            <Text fill="#555555" strokeType="OUTSIDE" strokeWidth="0.0" text="Meaning"/>
+            <Line endX="187.09288024902344" startX="-100.0" stroke="#ececec"/>
+            <Text fx:id="vocabulary_text_word_explanation" opacity="0.6" wrappingWidth="280.0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="10.0" top="20.0"/>
+                </VBox.margin>
+            </Text>
         </VBox>
-        <VBox alignment="TOP_RIGHT" minWidth="120.0" prefHeight="70.0" prefWidth="120.0">
-            <children>
-                <ChoiceBox fx:id="vocabulary_word_set_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0"
-                           prefWidth="150.0">
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </ChoiceBox>
-                <VBox alignment="BOTTOM_RIGHT" prefHeight="470.0" prefWidth="150.0" spacing="5.0">
-                    <VBox.margin>
-                        <Insets top="60.0"/>
-                    </VBox.margin>
-                    <children>
-                        <Pane fx:id="btn_last" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0"
-                              prefHeight="40.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
-                                           pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@com.experiment.translate.img/向上1.png"/>
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </Pane>
-                        <Pane fx:id="btn_add" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0"
-                              prefHeight="40.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
-                                           pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@com.experiment.translate.img/加号.png"/>
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </Pane>
-                        <Pane fx:id="btn_remove" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0"
-                              prefHeight="40.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
-                                           pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@com.experiment.translate.img/减号.png"/>
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </Pane>
-                        <Pane fx:id="btn_next" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0"
-                              prefHeight="40.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
-                                           pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@com.experiment.translate.img/向下1.png"/>
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </Pane>
-                    </children>
-                </VBox>
-            </children>
+        <VBox prefHeight="158.0" prefWidth="359.0">
+            <Text fill="#555555" strokeType="OUTSIDE" strokeWidth="0.0" text="Examples"/>
+            <Line endX="187.09288024902344" startX="-100.0" stroke="#ececec"/>
+            <Text fx:id="text_example1" opacity="0.6" text="·We are going to execute our campaign plan to the letter"
+                  wrappingWidth="280.0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="10.0" right="20.0" top="10.0"/>
+                </VBox.margin>
+            </Text>
+            <Text fx:id="text_example2" opacity="0.6" text="·We execute that instruction and we move to the next one."
+                  wrappingWidth="280.0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="10.0" right="20.0" top="10.0"/>
+                </VBox.margin>
+            </Text>
+            <Text fx:id="text_example3" opacity="0.6"
+                  text="·The lawyer argued that it is wrong to execute a person for a crime he committed while he was a minor."
+                  wrappingWidth="280.0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="10.0" right="20.0" top="10.0"/>
+                </VBox.margin>
+            </Text>
         </VBox>
-    </children>
+        <VBox prefHeight="158.0" prefWidth="359.0">
+            <Text fill="#555555" strokeType="OUTSIDE" strokeWidth="0.0" text="Near-synonym"/>
+            <Line endX="187.09288024902344" startX="-100.0" stroke="#ececec"/>
+            <Text fx:id="text_near_synonym" opacity="0.6" text="execute an order履行订单 ; 接受订货 ; 履行定单 ; 生产订单"
+                  wrappingWidth="280.0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="10.0" right="20.0" top="10.0"/>
+                </VBox.margin>
+            </Text>
+        </VBox>
+    </VBox>
+    <VBox alignment="TOP_RIGHT" minWidth="120.0" prefHeight="70.0" prefWidth="120.0">
+        <ChoiceBox fx:id="vocabulary_word_set_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0"
+                   prefWidth="150.0">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </ChoiceBox>
+        <VBox alignment="BOTTOM_RIGHT" prefHeight="470.0" prefWidth="150.0" spacing="5.0">
+            <VBox.margin>
+                <Insets top="60.0"/>
+            </VBox.margin>
+            <Pane fx:id="btn_last" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0"
+                  prefWidth="40.0" styleClass="translate-background-vbox">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
+                           pickOnBounds="true" preserveRatio="true">
+                    <Image url="@com.experiment.translate.img/向上1.png"/>
+                </ImageView>
+            </Pane>
+            <Pane fx:id="btn_add" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0"
+                  prefWidth="40.0" styleClass="translate-background-vbox">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
+                           pickOnBounds="true" preserveRatio="true">
+                    <Image url="@com.experiment.translate.img/加号.png"/>
+                </ImageView>
+            </Pane>
+            <Pane fx:id="btn_remove" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0"
+                  prefWidth="40.0" styleClass="translate-background-vbox">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
+                           pickOnBounds="true" preserveRatio="true">
+                    <Image url="@com.experiment.translate.img/减号.png"/>
+                </ImageView>
+            </Pane>
+            <Pane fx:id="btn_next" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0"
+                  prefWidth="40.0" styleClass="translate-background-vbox">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" opacity="0.5"
+                           pickOnBounds="true" preserveRatio="true">
+                    <Image url="@com.experiment.translate.img/向下1.png"/>
+                </ImageView>
+            </Pane>
+        </VBox>
+    </VBox>
 </HBox>

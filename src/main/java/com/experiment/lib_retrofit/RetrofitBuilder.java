@@ -21,6 +21,12 @@ public class RetrofitBuilder {
     }
 
     @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    public @interface GET_FILE {
+        String value();
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.PARAMETER)
     public @interface Path {
         String value();

@@ -38,6 +38,16 @@ public class ReturnTypeMethod<ReturnT> extends ParseArgsMethod<ReturnT> {
                     return (ReturnT) Connect.post(request, method.getReturnType().getClass()).body;
                 }
             };
+        }  else if (annotation instanceof RetrofitBuilder.GET_FILE) {
+            return new ReturnTypeMethod<ReturnT>() {
+                @Override
+                public ReturnT invoke(Object[] args) {
+                    url = retrofit.getBaseUrl() + ((RetrofitBuilder.GET_FILE) annotation).value();
+                    parseArgs(method, args);
+                    Request request = new RequestBuilder().method("GET").url(url).build();
+                    return (ReturnT) Connect.getFile(request.getUrl());
+                }
+            };
         } else {
             throw new RuntimeException();
         }

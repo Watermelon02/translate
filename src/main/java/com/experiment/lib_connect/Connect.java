@@ -1,9 +1,6 @@
 package com.experiment.lib_connect;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -81,5 +78,41 @@ public class Connect {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static byte[] getFile(String url) {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            if (cookies != null) {
+                StringBuilder cookie = new StringBuilder();
+                for (String str : cookies) {
+                    cookie.append(str).append(";");
+                }
+                connection.setRequestProperty("Cookie", cookie.toString());
+            }
+            connection.setDoInput(true);
+            connection.setDoOutput(false);
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Connection", "Keep-Alive");
+            connection.connect();
+            connection.connect();
+            return readBytes(connection.getInputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static byte[] readBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        }
+        byteArrayOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
     }
 }

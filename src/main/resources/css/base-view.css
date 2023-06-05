@@ -67,7 +67,7 @@
 .list-view{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: #cecece;
+    -fx-border-color: #505eec;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
@@ -79,30 +79,35 @@
     -fx-cell-focus-inner-border: transparent;
 }
 
+.list-cell {
+    -fx-text-fill: #00000080;
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #f6f6f6;
+    -fx-border-insets: 0 10 0 10;
+}
+
 .list-cell:focused{
     -fx-background-color: #ececec;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-cell-focus-inner-border: transparent;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-insets: 0 10 0 10;
 }
 
 
 .choice-box{
-    -fx-background-color: #dedede;
-    -fx-opacity: 0.8;
+    -fx-background-color: #ececec;
 }
 
 .text-field{
     -fx-background-color: transparent; /* 取消背景颜色 */
     -fx-border-color: transparent; /* 取消边框颜色 */
 }
-.list-cell {
-    -fx-text-fill: #00000080;
-    -fx-background-color: white;
-    -fx-border-color: #eaeaea;
-    -fx-border-width: 0 0 1px 0;
-    -fx-border-insets: 0 10 0 10;
-}
+
 
 .shape-circle{
     -fx-background-radius: 50%;

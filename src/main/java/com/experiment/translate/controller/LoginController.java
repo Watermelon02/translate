@@ -2,7 +2,7 @@ package com.experiment.translate.controller;
 
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.customview.CustomColorAnimation;
+import com.experiment.translate.customview.DyanamicColorAnimation;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,7 +37,7 @@ public class LoginController extends ControlledStage implements Initializable {
             myController.getStage(MainApp.loginViewID).close();
         });
         img_login.setClip(new Circle(img_login.getPrefWidth()/2,img_login.getPrefHeight()/2,30));
-        CustomColorAnimation animation = new CustomColorAnimation(Duration.seconds(4), img_login, Color.valueOf("#A6FFCB"), Color.valueOf("#1FA2FF"));
+        DyanamicColorAnimation animation = new DyanamicColorAnimation(Duration.seconds(4), img_login, Color.valueOf("#A6FFCB"), Color.valueOf("#1FA2FF"));
         animation.setCycleCount(Animation.INDEFINITE);
         animation.setAutoReverse(true);
         // 启动动画

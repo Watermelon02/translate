@@ -41,6 +41,16 @@ public abstract class HttpUrlMethod<RequestT, ReturnT> extends ParseArgsMethod<R
                     return new Call(request);
                 }
             };
+        } else if (annotation instanceof RetrofitBuilder.GET_FILE) {
+            return new HttpUrlMethod<RequestT, ReturnT>() {
+                @Override
+                public Call<ReturnT> invoke(Object[] args) {
+                    url = retrofit.getBaseUrl() + ((RetrofitBuilder.POST) annotation).value();
+                    parseArgs(method, args);
+                    Request request = new RequestBuilder().method("GET").url(url).body(body).build();
+                    return new Call(request);
+                }
+            };
         } else {
             throw new RuntimeException();
         }

@@ -57,6 +57,22 @@ public abstract class ObservableMethod<ReturnT> extends ParseArgsMethod<ReturnT>
                     });
                 }
             };
+        } else if (annotation instanceof RetrofitBuilder.GET_FILE) {
+            return new ObservableMethod<ReturnT>() {
+                @Override
+                public Observable<ReturnT> invoke(Object[] args) {
+                    return Observable.create(new ObservableOnSubscribe<ReturnT>() {
+                        @Override
+                        public void subscribe(ObservableEmitter<ReturnT> observableEmitter) {
+                            url = retrofit.getBaseUrl() + ((RetrofitBuilder.POST) annotation).value();
+                            parseArgs(method, args);
+                            Request request = new RequestBuilder().method("GET").url(url).build();
+                            ReturnT result = (ReturnT) Connect.getFile(request.getUrl());
+                            observableEmitter.onNext(result);
+                        }
+                    });
+                }
+            };
         } else {
             throw new RuntimeException();
         }

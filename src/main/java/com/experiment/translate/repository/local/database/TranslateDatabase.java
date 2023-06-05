@@ -1,7 +1,5 @@
 package com.experiment.translate.repository.local.database;
 
-import com.experiment.translate.repository.bean.Explanation;
-import com.experiment.translate.repository.local.dao.ExplanationDAO;
 import com.experiment.translate.repository.local.dao.UserDao;
 import com.experiment.translate.repository.local.dao.WordDAO;
 import com.experiment.translate.repository.local.dao.WordSetDAO;
@@ -18,7 +16,6 @@ public class TranslateDatabase {
     private static final String password = "ai1wei2xi3";
 
     private WordDAO wordDAO;
-    private ExplanationDAO explanationDAO;
     private WordSetDAO wordSetDAO;
     private UserDao userDao;
 
@@ -54,14 +51,6 @@ public class TranslateDatabase {
             wordDAO = new WordDAO(connection);
         }
         return wordDAO;
-    }
-
-    public ExplanationDAO getExplanationDAO() {
-        if (connection == null) getConnection();
-        if (explanationDAO == null) {
-            explanationDAO = new ExplanationDAO(connection);
-        }
-        return explanationDAO;
     }
 
     public WordSetDAO getWordSetDAO() {

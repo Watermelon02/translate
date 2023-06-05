@@ -9,10 +9,10 @@ import com.experiment.translate.viewmodel.TranslateViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,10 +30,8 @@ public class TranslateController extends ControlledStage implements Initializabl
     VBox from_btn;
 
     @FXML
-    VBox to_btn;
+    HBox to_btn;
 
-    MediaView fromMediaView;
-    MediaView toMediaView;
     MediaPlayer fromMediaPlayer;
     MediaPlayer toMediaPlayer;
 

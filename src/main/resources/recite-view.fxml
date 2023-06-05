@@ -21,7 +21,7 @@
                </HBox.margin></Text>
             <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="265.0">
                <children>
-                  <ChoiceBox fx:id="word_set_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="150.0">
+                  <ChoiceBox fx:id="word_set_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="120.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></ChoiceBox>
