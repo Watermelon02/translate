@@ -33,12 +33,14 @@
             <children>
                 <Text fx:id="vocabulary_text_word_phonetic" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0"
                       text="\\yin biao\" wrappingWidth="80.0"/>
-                <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="82.0" layoutY="2.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@com.experiment.translate.img/声音%20(1).png"/>
-                    </image>
-                </ImageView>
+                <VBox styleClass="translate-background-vbox" layoutX="82.0" layoutY="2.0">
+                    <ImageView fx:id="btn_speech_play" fitHeight="24.0" fitWidth="26.0"  pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@com.experiment.translate.img/声音.png"/>
+                        </image>
+                    </ImageView>
+                </VBox>
             </children>
         </AnchorPane>
         <VBox prefHeight="158.0" prefWidth="359.0">

@@ -5,7 +5,7 @@ import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
 import com.experiment.translate.customview.AddWordDialog;
 import com.experiment.translate.customview.WordListCell;
-import com.experiment.translate.helper.ViewModelController;
+import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.viewmodel.VocabularyViewModel;
@@ -16,10 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -53,6 +54,10 @@ public class VocabularyController extends ControlledStage implements Initializab
     Pane btn_add;
     @FXML
     Pane btn_remove;
+    @FXML
+    ImageView btn_speech_play;
+    @FXML
+    MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,16 +70,16 @@ public class VocabularyController extends ControlledStage implements Initializab
                 handleWordSetListChange(wordSets, viewModel);
             }
         });
-        viewModel.currentWord.subscribe(new OnNextObserver<Word>() {
-            @Override
-            public void onNext(Word word) {
-                handleWordChange(word);
-            }
-        });
         viewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
             @Override
             public void onNext(WordSet wordSet) {
                 handleWordSetChange(wordSet, viewModel);
+            }
+        });
+        viewModel.currentWord.subscribe(new OnNextObserver<Word>() {
+            @Override
+            public void onNext(Word word) {
+                handleWordChange(word);
             }
         });
         viewModel.fetchWordSet();
@@ -134,7 +139,7 @@ public class VocabularyController extends ControlledStage implements Initializab
         });
         btn_add.setOnMouseClicked(event -> {
             AddWordDialog dialog = new AddWordDialog(input -> {
-                viewModel.fetchWord(input, wordSet);
+                viewModel.addWordsIntoWordSet(input, wordSet);
             });
             dialog.showAndWait();
         });
@@ -143,8 +148,10 @@ public class VocabularyController extends ControlledStage implements Initializab
             int selectIndex = word_list.getSelectionModel().getSelectedIndex();
             if (selectIndex == -1) selectIndex = 1;//防止为选中时报错
             wordObservableList.remove(selectIndex);
-            viewModel.removeWordFromWordSet(selectIndex,wordSet);
+            wordSet.getWordList().remove(selectIndex);
+            viewModel.removeWordFromWordSet(selectIndex, wordSet);
         });
+
         viewModel.newWord.subscribe(new OnNextObserver<Word>() {
             @Override
             public void onNext(Word word) {
@@ -159,8 +166,14 @@ public class VocabularyController extends ControlledStage implements Initializab
      */
     public void handleWordChange(Word word) {
         if (word != null) {
+            if (mediaPlayer != null) mediaPlayer.stop();
             vocabulary_text_word_id.setText(word.getWord_id());
             vocabulary_text_word_phonetic.setText(word.getBasicPhonetic());
+            Media wordMedia = new Media(word.getUkSpeech());
+            mediaPlayer = new MediaPlayer(wordMedia);
+            btn_speech_play.setOnMouseClicked(event -> {
+                mediaPlayer.play();
+            });
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < word.getExplanation().size(); i++) {
                 sb.append(word.getExplanation().get(i));

@@ -1,6 +1,11 @@
 package com.experiment.translate.repository.bean;
 
+import com.experiment.lib_connect.Connect;
+import com.experiment.translate.util.FileUtil;
+
 import java.util.List;
+
+import static com.experiment.translate.util.FileUtil.FILE_DESCRIPTOR;
 
 public class YoudaoTranslationResponse {
     private String errorCode;
@@ -203,6 +208,24 @@ public class YoudaoTranslationResponse {
         public void setUrl(String url) {
             this.url = url;
         }
+    }
+
+    /**因为查询直接返回的bean中的语音只能播放一次，所以要存储到本地，该方法存储到本地后将语音路径设置为本地路径*/
+    public void generateAndSetLocalVoicePath(){
+        byte[] fromTextVoice = Connect.getFile(speakUrl);
+        byte[] toTextVoice = Connect.getFile(tSpeakUrl);
+        String fromTextVoicePath = FileUtil.saveFile(fromTextVoice, FileUtil.TEMP_FILE);
+        String toTextVoicePath = FileUtil.saveFile(toTextVoice, FileUtil.TEMP_FILE);
+        setSpeakUrl(FILE_DESCRIPTOR + fromTextVoicePath);
+        setTSpeakUrl(FILE_DESCRIPTOR + toTextVoicePath);
+    }
+
+    /**因为查询直接返回的bean中的语音只能播放一次，所以要存储到本地，该方法存储到本地后将语音路径设置为本地路径*/
+    public void generateAndSetLocalWordVoicePath(){
+        byte[] usVoice = Connect.getFile(speakUrl);
+        String usVoicePath = FileUtil.saveFile(usVoice, FileUtil.VOICE_FILE);
+        basic.setUkSpeech(FILE_DESCRIPTOR + usVoicePath);
+        basic.setUsSpeech(FILE_DESCRIPTOR + usVoicePath);
     }
 }
 

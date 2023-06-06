@@ -28,7 +28,15 @@ public abstract class ParseArgsMethod<T> extends ServiceMethod<T> {
                 }
                 index++;
             } else if (parameter.getAnnotations().length > 0 && parameter.getAnnotations()[0] instanceof RetrofitBuilder.Field) {
-                body = (String) args[index];
+                RetrofitBuilder.Field pathAnnotation = (RetrofitBuilder.Field) parameter.getAnnotations()[0];
+                String str = pathAnnotation.value();
+                String arg = args[index].toString();
+                try {
+                    arg = URLEncoder.encode(args[index].toString(), "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+                body = body + arg;
                 index++;
             }
         }

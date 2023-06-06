@@ -2,8 +2,8 @@ package com.experiment.translate.controller;
 
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.ViewController;
-import com.experiment.translate.helper.ViewModelController;
+import com.experiment.translate.util.ViewController;
+import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.viewmodel.BaseViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

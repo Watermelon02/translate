@@ -9,7 +9,7 @@ import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.lib_react.scheduler.MainThreadScheduler;
 import com.experiment.lib_react.scheduler.NewThreadScheduler;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.SignGenerator;
+import com.experiment.translate.util.SignGenerator;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
@@ -48,7 +48,7 @@ public class VocabularyViewModel implements ViewModel {
         });
     }
 
-    public void fetchWord(String wordsText, WordSet wordSet) {
+    public void addWordsIntoWordSet(String wordsText, WordSet wordSet) {
         String[] words = wordsText.split(",");
         for (String word : words) {
             long curtime = System.currentTimeMillis() / 1000; // 获取当前时间戳（秒级）
@@ -60,11 +60,15 @@ public class VocabularyViewModel implements ViewModel {
                 public void run(YoudaoTranslationResponse s) {
                     if (s.getBasic() != null) {
                         //插入新单词到数据库
+                        s.generateAndSetLocalWordVoicePath();
                         Word newWord = new Word(s.getQuery(), s.getSpeakUrl(), s.getBasic().getPhonetic(), s.getBasic().getUkSpeech(), s.getBasic().getUsSpeech());
                         newWord.setExplanation(s.getBasic().getExplains());
                         database.getWordDAO().insertWord(newWord);
-                        for (Word existWord : wordSet.getWordList()) {//防止重复插入同一单词到同一单词本中
-                            if (existWord.getWord_id().equals(newWord.getWord_id())) return;
+                        for (int i = 0; i < wordSet.getWordList().size(); i++) {//防止重复插入同一单词到同一单词本中
+                            Word existWord = wordSet.getWordList().get(i);
+                            if (existWord != null) {
+                                if (existWord.getWord_id().equals(newWord.getWord_id())) return;
+                            }
                         }
                         database.getWordSetDAO().insertWordIntoWordSet(newWord, wordSet);
                     }
@@ -94,6 +98,7 @@ public class VocabularyViewModel implements ViewModel {
         }).subscribeOn(new NewThreadScheduler()).observeOn(new MainThreadScheduler()).subscribe(new OnNextObserver<WordSet>() {
             @Override
             public void onNext(WordSet wordSet) {
+
             }
         });
     }

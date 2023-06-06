@@ -1,4 +1,4 @@
-package com.experiment.translate.helper;
+package com.experiment.translate.util;
 
 import com.experiment.translate.viewmodel.ViewModel;
 

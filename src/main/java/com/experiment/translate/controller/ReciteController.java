@@ -3,7 +3,7 @@ package com.experiment.translate.controller;
 import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.ViewModelController;
+import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.viewmodel.ReciteViewModel;
@@ -113,17 +113,19 @@ public class ReciteController extends ControlledStage implements Initializable {
      * 刷新显示的单词已经相关的其他视图信息
      */
     public void handleWordChange(Word word) {
-        text_word_id.setText(word.getWord_id());
-        text_word_phonetic.setText("");
-        text_word_explanation.setText("");
-        btn_forget.setOnMouseClicked(event -> {
-            text_word_phonetic.setText(word.getBasicPhonetic());
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < word.getExplanation().size(); i++) {
-                sb.append(word.getExplanation().get(i));
-                sb.append(" ");
-            }
-            text_word_explanation.setText(sb.toString());
-        });
+        if (word!=null){
+            text_word_id.setText(word.getWord_id());
+            text_word_phonetic.setText("");
+            text_word_explanation.setText("");
+            btn_forget.setOnMouseClicked(event -> {
+                text_word_phonetic.setText(word.getBasicPhonetic());
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < word.getExplanation().size(); i++) {
+                    sb.append(word.getExplanation().get(i));
+                    sb.append(" ");
+                }
+                text_word_explanation.setText(sb.toString());
+            });
+        }
     }
 }

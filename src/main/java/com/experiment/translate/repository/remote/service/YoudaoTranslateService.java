@@ -3,11 +3,13 @@ package com.experiment.translate.repository.remote.service;
 import com.experiment.lib_react.observable.Observable;
 import com.experiment.lib_retrofit.RetrofitBuilder;
 import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
-import com.experiment.translate.repository.bean.YoudaoVoiceResponse;
 
 public interface YoudaoTranslateService {
     @RetrofitBuilder.GET("api?q={fromText}&from=en&to=zh-CHS&appKey=12ec819274fd65c7&salt=12345678&sign={sign}&signType=v3&curtime={curtime}")
     public Observable<YoudaoTranslationResponse> translate(@RetrofitBuilder.Path("fromText") String fromText, @RetrofitBuilder.Path("sign") String sign, @RetrofitBuilder.Path("curtime") String curTime);
-    @RetrofitBuilder.GET_FILE("ttsapi?q={fromText}&appKey=12ec819274fd65c7&salt=12345678&sign={sign}&voiceName=youxiaoqin")
+//    @RetrofitBuilder.POST("ttsapi?q={path}")
+//    public byte[] getTempVoice(@RetrofitBuilder.Path("path") String path);
+
+    @RetrofitBuilder.POST("ttsapi?q={fromText}&appKey=12ec819274fd65c7&salt=12345678&sign={sign}&voiceName=youxiaoqin")
     public byte[] getVoice(@RetrofitBuilder.Path("fromText") String fromText, @RetrofitBuilder.Path("sign") String sign);
 }

@@ -3,7 +3,7 @@ package com.experiment.translate.controller;
 import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.translate.ControlledStage;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.helper.ViewModelController;
+import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
 import com.experiment.translate.viewmodel.TranslateViewModel;
 import javafx.fxml.FXML;
@@ -48,12 +48,13 @@ public class TranslateController extends ControlledStage implements Initializabl
             vm.translate(text_input.getText());
         });
         from_btn.setOnMouseClicked(event -> {
+            fromMediaPlayer.stop();
             if (fromMediaPlayer != null) {
-                System.out.println("play");
                 fromMediaPlayer.play();
             }
         });
         to_btn.setOnMouseClicked(event -> {
+            toMediaPlayer.stop();
             if (toMediaPlayer != null) {
                 toMediaPlayer.play();
             }
@@ -68,9 +69,7 @@ public class TranslateController extends ControlledStage implements Initializabl
                     toMediaPlayer.stop();
                 }
                 Media fromMedia = new Media(youdaoTranslationResponse.getSpeakUrl());
-                System.out.println(youdaoTranslationResponse.getSpeakUrl());
                 fromMediaPlayer = new MediaPlayer(fromMedia);
-                fromMediaPlayer.play();
                 Media toMedia = new Media(youdaoTranslationResponse.getTSpeakUrl());
                 toMediaPlayer = new MediaPlayer(toMedia);
                 text_output.setText(youdaoTranslationResponse.getTranslation().get(0));
