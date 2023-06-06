@@ -29,6 +29,7 @@ public class WordDAO {
                 word.setUsSpeech(resultSet.getString("us_speech"));
                 String explanationSql = "SELECT * FROM explanation WHERE explanation.word_id = ?";
                 try (PreparedStatement explanationStatement = connection.prepareStatement(explanationSql)) {
+                    explanationStatement.setString(1,id);
                     ResultSet resultSet2 = explanationStatement.executeQuery();
                     if (resultSet2.next()) {
                         word.getExplanation().add(resultSet2.getString("meaning"));

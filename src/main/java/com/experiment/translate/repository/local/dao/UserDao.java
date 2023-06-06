@@ -32,6 +32,7 @@ public class UserDao {
             statement.setInt(4, user.getLevel());
             statement.setInt(5, user.getLearningDays());
             statement.setInt(6, user.getVocabulary());
+            statement.setString(7, user.getRole());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,6 +54,7 @@ public class UserDao {
                 user.setLevel(resultSet.getInt("level"));
                 user.setLearningDays(resultSet.getInt("learning_days"));
                 user.setVocabulary(resultSet.getInt("vocabulary"));
+                user.setRole(resultSet.getString("role"));
                 return user;
             }
         } catch (SQLException e) {

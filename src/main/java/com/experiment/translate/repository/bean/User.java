@@ -7,13 +7,14 @@ public class User {
     private int level;
     private int learningDays;
     private int vocabulary;
+    private String role;
 
     // 构造函数、Getter和Setter方法
 
     public User() {
     }
 
-    public User(long userId, String account, String password, int level, int learningDays, int vocabulary) {
+    public User(long userId, String account, String password, int level, int learningDays, int vocabulary,String role) {
         this.userId = userId;
         this.account = account;
         this.password = password;
@@ -68,6 +69,14 @@ public class User {
 
     public void setVocabulary(int vocabulary) {
         this.vocabulary = vocabulary;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

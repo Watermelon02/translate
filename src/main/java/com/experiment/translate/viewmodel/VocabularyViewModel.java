@@ -2,19 +2,17 @@ package com.experiment.translate.viewmodel;
 
 import com.experiment.lib_react.ObservableOnSubscribe;
 import com.experiment.lib_react.emitter.ObservableEmitter;
-import com.experiment.lib_react.observable.flow.Flow;
 import com.experiment.lib_react.observable.Observable;
+import com.experiment.lib_react.observable.flow.Flow;
 import com.experiment.lib_react.observer.OnNextAction;
 import com.experiment.lib_react.observer.OnNextObserver;
 import com.experiment.lib_react.scheduler.MainThreadScheduler;
 import com.experiment.lib_react.scheduler.NewThreadScheduler;
 import com.experiment.translate.MainApp;
-import com.experiment.translate.util.SignGenerator;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
-import com.experiment.translate.repository.bean.YoudaoTranslationResponse;
 import com.experiment.translate.repository.local.database.TranslateDatabase;
-import com.experiment.translate.repository.remote.retrofit.YoudaoServiceCreator;
+import com.experiment.translate.repository.remote.retrofit.MyServerCreator;
 
 import java.util.List;
 
@@ -50,19 +48,12 @@ public class VocabularyViewModel implements ViewModel {
 
     public void addWordsIntoWordSet(String wordsText, WordSet wordSet) {
         String[] words = wordsText.split(",");
-        for (String word : words) {
-            long curtime = System.currentTimeMillis() / 1000; // 获取当前时间戳（秒级）
-            String curtimeText = String.valueOf(curtime);
-
-            String sign = SignGenerator.generateYoudaoSign(word, curtimeText);
-            YoudaoServiceCreator.getYoudaoTranslateService().translate(word, sign, curtimeText).subscribeOn(new NewThreadScheduler()).doOnNext(new OnNextAction<YoudaoTranslationResponse>() {
+        for (String word_id : words) {
+            MyServerCreator.getMyServerService().getWord(word_id, wordSet.getWordSetId()).subscribeOn(new NewThreadScheduler()).doOnNext(new OnNextAction<Word>() {
                 @Override
-                public void run(YoudaoTranslationResponse s) {
-                    if (s.getBasic() != null) {
+                public void run(Word newWord) {
+                    if (newWord != null) {
                         //插入新单词到数据库
-                        s.generateAndSetLocalWordVoicePath();
-                        Word newWord = new Word(s.getQuery(), s.getSpeakUrl(), s.getBasic().getPhonetic(), s.getBasic().getUkSpeech(), s.getBasic().getUsSpeech());
-                        newWord.setExplanation(s.getBasic().getExplains());
                         database.getWordDAO().insertWord(newWord);
                         for (int i = 0; i < wordSet.getWordList().size(); i++) {//防止重复插入同一单词到同一单词本中
                             Word existWord = wordSet.getWordList().get(i);
@@ -73,14 +64,11 @@ public class VocabularyViewModel implements ViewModel {
                         database.getWordSetDAO().insertWordIntoWordSet(newWord, wordSet);
                     }
                 }
-            }).observeOn(new MainThreadScheduler()).subscribe(new OnNextObserver<YoudaoTranslationResponse>() {
-
+            }).observeOn(new MainThreadScheduler()).subscribe(new OnNextObserver<Word>() {
                 @Override
-                public void onNext(YoudaoTranslationResponse s) {
-                    if (s.getBasic() != null) {
+                public void onNext(Word newWord) {
+                    if (newWord != null) {
                         //刷新内存中的单词集
-                        Word newWord = new Word(s.getQuery(), s.getSpeakUrl(), s.getBasic().getPhonetic(), s.getBasic().getUkSpeech(), s.getBasic().getUsSpeech());
-                        newWord.setExplanation(s.getBasic().getExplains());
                         VocabularyViewModel.this.newWord.onNext(newWord);
                     }
                 }
