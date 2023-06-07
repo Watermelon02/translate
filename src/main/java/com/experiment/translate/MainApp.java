@@ -34,7 +34,7 @@ public class MainApp extends Application {
         stageController.setPrimaryStage("primaryStage", primaryStage);
 
         //加载登录stage，每个界面一个舞台
-        stageController.loadStage(loginViewID, loginViewRes, StageStyle.UNDECORATED);
+        stageController.loadStage(loginViewID, loginViewRes, StageStyle.UTILITY);
 
         //显示loginView舞台
         stageController.setStage(loginViewID);

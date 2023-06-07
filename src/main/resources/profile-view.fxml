@@ -5,67 +5,119 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox  maxHeight="560.0" maxWidth="520.0" minHeight="560.0" minWidth="520.0" prefHeight="560.0" prefWidth="520.0" spacing="5.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.ProfileController">
+<VBox maxHeight="560.0" maxWidth="520.0" minHeight="560.0" minWidth="520.0" prefHeight="560.0" prefWidth="520.0" spacing="5.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.ProfileController">
    <children>
       <HBox prefHeight="124.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@com.experiment.translate.img/个人头像.png" />
-               </image>
-            </ImageView>
-            <VBox prefHeight="117.0" prefWidth="481.0" spacing="5.0">
-               <children>
-                  <Text id="text_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="477.7158203125">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <HBox prefHeight="3.0" prefWidth="479.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" wrappingWidth="24.2021484375" />
-                        <Text id="text_id" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="1446157077" wrappingWidth="176.21630859375" />
-                     </children>
-                  </HBox>
-               </children>
+            <VBox alignment="CENTER" prefHeight="117.0" prefWidth="481.0" spacing="5.0">
+               <ImageView fx:id="profileImage" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@com.experiment.translate.img/个人头像.png" />
+                  </image>
+                  <clip>
+                     <Circle centerX="60" centerY="60" radius="60" />
+                  </clip>
+               </ImageView>
+               <VBox prefHeight="117.0" prefWidth="481.0" spacing="5.0" />
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>
-      <Line endX="500.0" startX="-100.0" stroke="#2e2eda">
+      <Line endX="388.0928955078125" startX="-100.0" stroke="#2e2eda">
          <VBox.margin>
             <Insets left="10.0" right="10.0" />
          </VBox.margin>
       </Line>
-      <VBox prefHeight="238.0" prefWidth="624.0" spacing="15.0">
+      <VBox prefHeight="370.0" prefWidth="501.0" spacing="15.0" style="-fx-background-color: #ececec; -fx-background-radius: 10;">
          <children>
-            <HBox prefHeight="16.0" prefWidth="331.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="368.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL :  " wrappingWidth="49.21630859375" />
-                  <Text id="text_level" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="18" wrappingWidth="39.55859375" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="昵称 : " wrappingWidth="177.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="text_name" strokeType="OUTSIDE" strokeWidth="0.0" text="昵称" wrappingWidth="180.1159210205078">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="nameImage" fitHeight="22.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@com.experiment.translate.img/更改昵称.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="3.0" prefWidth="479.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" wrappingWidth="177.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="text_id" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="1446157077" wrappingWidth="176.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="331.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="等级 :  " wrappingWidth="177.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text id="text_level" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="18" wrappingWidth="39.55859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
             <HBox prefHeight="5.0" prefWidth="622.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Accumulated learing days : " wrappingWidth="149.21630859375" />
-                  <Text id="text_days" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="209.53125" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="学习天数 : " wrappingWidth="177.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text id="text_days" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="209.53125">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
             <HBox prefHeight="5.0" prefWidth="474.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Accumulated  Vocabulary : " wrappingWidth="149.21630859375" />
-                  <Text id="text_vocabulary" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="2000" wrappingWidth="80.21630859375" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="累计单词数 : " wrappingWidth="177.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text id="text_vocabulary" fill="#2e2eda" strokeType="OUTSIDE" strokeWidth="0.0" text="2000" wrappingWidth="80.21630859375">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
          </children>
          <padding>
-            <Insets left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <VBox.margin>
-            <Insets />
+            <Insets top="10.0" />
          </VBox.margin>
       </VBox>
    </children>
