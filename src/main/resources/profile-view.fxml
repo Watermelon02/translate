@@ -37,14 +37,14 @@
       </Line>
       <VBox prefHeight="370.0" prefWidth="501.0" spacing="15.0" style="-fx-background-color: #ececec; -fx-background-radius: 10;">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="368.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="10.0" prefWidth="454.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="昵称 : " wrappingWidth="177.21630859375">
+                  <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Name : " wrappingWidth="177.21630859375">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="text_name" strokeType="OUTSIDE" strokeWidth="0.0" text="昵称" wrappingWidth="180.1159210205078">
+                  <Text fx:id="text_name" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="昵称" wrappingWidth="180.1159210205078">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -58,7 +58,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="3.0" prefWidth="479.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" wrappingWidth="177.21630859375">
+                  <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" wrappingWidth="177.21630859375">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -72,7 +72,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="331.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="等级 :  " wrappingWidth="177.21630859375">
+                  <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Level :  " wrappingWidth="177.21630859375">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -86,7 +86,7 @@
             </HBox>
             <HBox prefHeight="5.0" prefWidth="622.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="学习天数 : " wrappingWidth="177.21630859375">
+                  <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Days : " wrappingWidth="177.21630859375">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -100,7 +100,7 @@
             </HBox>
             <HBox prefHeight="5.0" prefWidth="474.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="累计单词数 : " wrappingWidth="177.21630859375">
+                  <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Vocabulary : " wrappingWidth="177.21630859375">
                      <font>
                         <Font size="15.0" />
                      </font>
