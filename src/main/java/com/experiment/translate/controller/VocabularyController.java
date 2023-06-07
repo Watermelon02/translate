@@ -8,6 +8,7 @@ import com.experiment.translate.customview.WordListCell;
 import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
+import com.experiment.translate.viewmodel.BaseViewModel;
 import com.experiment.translate.viewmodel.VocabularyViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,27 +63,28 @@ public class VocabularyController extends ControlledStage implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initWordListView(word_list);
-        VocabularyViewModel viewModel = (VocabularyViewModel) ViewModelController.getInstance().getViewModel(MainApp.vocabularyViewID);
+        VocabularyViewModel vocabularyViewModel = (VocabularyViewModel) ViewModelController.getInstance().getViewModel(MainApp.vocabularyViewID);
+        BaseViewModel baseViewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(MainApp.baseViewID);
         //界面初始化时获取要背的单词列表信息
-        viewModel.wordSetList.subscribe(new OnNextObserver<List<WordSet>>() {
+        baseViewModel.currentWordSetList.subscribe(new OnNextObserver<List<WordSet>>() {
             @Override
             public void onNext(List<WordSet> wordSets) {
-                handleWordSetListChange(wordSets, viewModel);
+                handleWordSetListChange(wordSets, baseViewModel);
             }
         });
-        viewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
+        baseViewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
             @Override
             public void onNext(WordSet wordSet) {
-                handleWordSetChange(wordSet, viewModel);
+                handleWordSetChange(wordSet, baseViewModel,vocabularyViewModel);
             }
         });
-        viewModel.currentWord.subscribe(new OnNextObserver<Word>() {
+        baseViewModel.currentWord.subscribe(new OnNextObserver<Word>() {
             @Override
             public void onNext(Word word) {
                 handleWordChange(word);
             }
         });
-        viewModel.fetchWordSet();
+        vocabularyViewModel.fetchWordSet();
     }
 
     private void initWordListView(ListView<Word> word_list) {
@@ -94,7 +96,7 @@ public class VocabularyController extends ControlledStage implements Initializab
         });
     }
 
-    public void handleWordSetListChange(List<WordSet> wordSets, VocabularyViewModel viewModel) {
+    public void handleWordSetListChange(List<WordSet> wordSets, BaseViewModel baseViewModel) {
         List<String> setNames = new ArrayList<>();
         for (WordSet wordSet : wordSets) {
             setNames.add(wordSet.getSetName());
@@ -108,22 +110,22 @@ public class VocabularyController extends ControlledStage implements Initializab
             for (int i = 0; i < wordSets.size(); i++) {
                 WordSet wordSet = wordSets.get(i);
                 if (wordSet.getSetName().equals(vocabulary_word_set_choice.getValue())) {
-                    viewModel.currentWordSet.onNext(wordSet);
+                    baseViewModel.currentWordSet.onNext(wordSet);
                 }
             }
         });
-        viewModel.currentWordSet.onNext(wordSets.get(0));
+        baseViewModel.currentWordSet.onNext(wordSets.get(0));
     }
 
     /**
      * 刷新ListView绑定的数据为选中的WordSet
      */
-    public void handleWordSetChange(WordSet wordSet, VocabularyViewModel viewModel) {
+    public void handleWordSetChange(WordSet wordSet, BaseViewModel baseViewModel,VocabularyViewModel vocabularyViewModel) {
         ObservableList<Word> wordObservableList = FXCollections.observableArrayList(wordSet.getWordList());
         word_list.setItems(wordObservableList);
         word_list.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             // 处理单词选择事件
-            viewModel.currentWord.onNext(word_list.getSelectionModel().getSelectedItem());
+            baseViewModel.currentWord.onNext(word_list.getSelectionModel().getSelectedItem());
         });
         btn_last.setOnMouseClicked(event -> {
             int selectIndex = word_list.getSelectionModel().getSelectedIndex();
@@ -139,7 +141,7 @@ public class VocabularyController extends ControlledStage implements Initializab
         });
         btn_add.setOnMouseClicked(event -> {
             AddWordDialog dialog = new AddWordDialog(input -> {
-                viewModel.addWordsIntoWordSet(input, wordSet);
+                vocabularyViewModel.addWordsIntoWordSet(input, wordSet);
             });
             dialog.showAndWait();
         });
@@ -147,18 +149,13 @@ public class VocabularyController extends ControlledStage implements Initializab
         btn_remove.setOnMouseClicked(event -> {
             int selectIndex = word_list.getSelectionModel().getSelectedIndex();
             if (selectIndex == -1) selectIndex = 1;//防止为选中时报错
-            wordObservableList.remove(selectIndex);
+//            wordObservableList.remove(selectIndex);
             wordSet.getWordList().remove(selectIndex);
-            viewModel.removeWordFromWordSet(selectIndex, wordSet);
+//            vocabularyViewModel.removeWordFromWordSet(selectIndex, wordSet);
+            baseViewModel.currentWordSet.setValue(wordSet);
         });
 
-        viewModel.newWord.subscribe(new OnNextObserver<Word>() {
-            @Override
-            public void onNext(Word word) {
-                wordObservableList.add(word);
-            }
-        });
-        viewModel.currentWord.onNext(wordSet.getWordList().get(0));
+        baseViewModel.currentWord.onNext(wordSet.getWordList().get(0));
     }
 
     /**

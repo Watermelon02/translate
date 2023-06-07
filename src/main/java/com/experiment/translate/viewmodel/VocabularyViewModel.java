@@ -13,22 +13,19 @@ import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.repository.local.database.TranslateDatabase;
 import com.experiment.translate.repository.remote.retrofit.MyServerCreator;
+import com.experiment.translate.util.ViewModelController;
 
 import java.util.List;
 
 public class VocabularyViewModel implements ViewModel {
     TranslateDatabase database = TranslateDatabase.getInstance();
     //当前选中的单词集
-    public final Flow<WordSet> currentWordSet = new Flow<>();
-    //当前选中的单词
-    public final Flow<Word> currentWord = new Flow<>();
-
-    public final Flow<List<WordSet>> wordSetList = new Flow<>();
     public final Flow<Word> newWord = new Flow<>();
-
+    private BaseViewModel baseViewModel;
 
     @Override
     public void init() {
+        baseViewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(MainApp.baseViewID);
     }
 
     public void fetchWordSet() {
@@ -41,7 +38,7 @@ public class VocabularyViewModel implements ViewModel {
         }).subscribeOn(new NewThreadScheduler()).observeOn(new MainThreadScheduler()).subscribe(new OnNextObserver<List<WordSet>>() {
             @Override
             public void onNext(List<WordSet> wordSets) {
-                wordSetList.onNext(wordSets);
+                baseViewModel.currentWordSetList.onNext(wordSets);
             }
         });
     }
@@ -69,7 +66,8 @@ public class VocabularyViewModel implements ViewModel {
                 public void onNext(Word newWord) {
                     if (newWord != null) {
                         //刷新内存中的单词集
-                        VocabularyViewModel.this.newWord.onNext(newWord);
+                        baseViewModel.currentWordSet.getValue().getWordList().add(newWord);
+                        baseViewModel.currentWordSet.onNext(baseViewModel.currentWordSet.getValue());
                     }
                 }
             });

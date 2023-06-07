@@ -6,6 +6,7 @@ import com.experiment.translate.MainApp;
 import com.experiment.translate.util.ViewModelController;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
+import com.experiment.translate.viewmodel.BaseViewModel;
 import com.experiment.translate.viewmodel.ReciteViewModel;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -34,35 +35,38 @@ public class ReciteController extends ControlledStage implements Initializable {
     VBox btn_remember;
     @FXML
     VBox btn_forget;
-    private ReciteViewModel viewModel;
+    private ReciteViewModel reciteViewModel;
+    private BaseViewModel baseViewModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        viewModel = (ReciteViewModel) ViewModelController.getInstance().getViewModel(MainApp.reciteViewID);
+        reciteViewModel = (ReciteViewModel) ViewModelController.getInstance().getViewModel(MainApp.reciteViewID);
+        baseViewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(MainApp.baseViewID);
+
         //界面初始化时获取要背的单词列表信息
-        viewModel.fetchWordSetList();
-        viewModel.currentWordSetList.subscribe(new OnNextObserver<List<WordSet>>() {
+        reciteViewModel.fetchWordSetList();
+        baseViewModel.currentWordSetList.subscribe(new OnNextObserver<List<WordSet>>() {
             @Override
             public void onNext(List<WordSet> wordSets) {
                 handleWordListChange(wordSets);
             }
         });
-        viewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
+        baseViewModel.currentWordSet.subscribe(new OnNextObserver<WordSet>() {
             @Override
             public void onNext(WordSet wordSet) {
                 handleWordSetChange(wordSet);
             }
         });
-        viewModel.currentWord.subscribe(new OnNextObserver<Word>() {
+        baseViewModel.currentWord.subscribe(new OnNextObserver<Word>() {
             @Override
             public void onNext(Word word) {
                 handleWordChange(word);
             }
         });
-        viewModel.index.subscribe(new OnNextObserver<Integer>() {
+        reciteViewModel.index.subscribe(new OnNextObserver<Integer>() {
             @Override
             public void onNext(Integer index) {
-                int totalWordNum = viewModel.currentWordSet.getValue().getWordList().size();
+                int totalWordNum = baseViewModel.currentWordSet.getValue().getWordList().size();
                 text_num_of_words.setText(String.valueOf(totalWordNum - index-1));
             }
         });
@@ -81,21 +85,21 @@ public class ReciteController extends ControlledStage implements Initializable {
             for (int i = 0; i < wordSets.size(); i++) {
                 WordSet wordSet = wordSets.get(i);
                 if (wordSet.getSetName().equals(word_set_choice.getValue())) {
-                    viewModel.currentWordSet.onNext(wordSet);
+                    baseViewModel.currentWordSet.onNext(wordSet);
                 }
             }
         });
-        viewModel.currentWordSet.onNext(wordSets.get(0));
+        baseViewModel.currentWordSet.onNext(wordSets.get(0));
     }
 
     public void handleWordSetChange(WordSet wordSet) {
-        viewModel.index.setValue(0);
+        reciteViewModel.index.setValue(0);
         word_set_choice.setValue(wordSet.getSetName());
         btn_remember.setOnMouseClicked(event -> {
-            int index = viewModel.index.getValue();
+            int index = reciteViewModel.index.getValue();
             if (index + 1 < wordSet.getWordList().size()) {
-                viewModel.index.setValue(index + 1);
-                viewModel.currentWord.onNext(wordSet.getWordList().get(index + 1));
+                reciteViewModel.index.setValue(index + 1);
+                baseViewModel.currentWord.onNext(wordSet.getWordList().get(index + 1));
             } else {//背完当前单词集
                 text_word_id.setText("Congratulations！");
                 text_word_phonetic.setText("完成任务");
@@ -106,7 +110,7 @@ public class ReciteController extends ControlledStage implements Initializable {
         });
         btn_forget.setOpacity(1);
         btn_remember.setOpacity(1);
-        viewModel.currentWord.onNext(wordSet.getWordList().get(viewModel.index.getValue()));
+        baseViewModel.currentWord.onNext(wordSet.getWordList().get(reciteViewModel.index.getValue()));
     }
 
     /**

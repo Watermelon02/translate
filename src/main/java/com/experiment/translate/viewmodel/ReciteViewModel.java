@@ -12,21 +12,20 @@ import com.experiment.translate.MainApp;
 import com.experiment.translate.repository.bean.Word;
 import com.experiment.translate.repository.bean.WordSet;
 import com.experiment.translate.repository.local.database.TranslateDatabase;
+import com.experiment.translate.util.ViewModelController;
 
 import java.util.List;
 
 public class ReciteViewModel implements ViewModel {
     private final TranslateDatabase database = TranslateDatabase.getInstance();
     //当前选中的单词集
-    public final StateFlow<WordSet> currentWordSet = new StateFlow<>(null);
-    //当前选中的单词
-    public final Flow<Word> currentWord = new Flow<>();
-    public final Flow<List<WordSet>> currentWordSetList = new Flow<>();
     public final StateFlow<Integer> index = new StateFlow<>(0);
+    private BaseViewModel baseViewModel;
 
 
     @Override
     public void init() {
+        baseViewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(MainApp.baseViewID);
     }
 
     public void fetchWordSetList() {
@@ -39,7 +38,7 @@ public class ReciteViewModel implements ViewModel {
         }).subscribeOn(new NewThreadScheduler()).observeOn(new MainThreadScheduler()).subscribe(new OnNextObserver<List<WordSet>>() {
             @Override
             public void onNext(List<WordSet> wordSets) {
-                currentWordSetList.onNext(wordSets);
+                baseViewModel.currentWordSetList.onNext(wordSets);
             }
         });
     }

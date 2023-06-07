@@ -25,10 +25,10 @@ public class DyanamicColorAnimation extends Transition {
     @Override
     protected void interpolate(double fraction) {
         // 更新目标对象的属性
-        Color color1 = calculateColor(startColor, fraction/2+0.5);
-        Color color2 = calculateColor(endColor, fraction/2+0.5);
-
-        Background background = createBackground(color1, color2);
+        Color color1 = calculateColor(startColor, fraction/4+0.6);
+        Color color2 = calculateColor(endColor, fraction/5+0.8);
+        Color color3 = calculateColor(endColor, fraction/4+0.4);
+        Background background = createBackground(color1, color2,color3);
         target.setBackground(background);
     }
 
@@ -41,14 +41,15 @@ public class DyanamicColorAnimation extends Transition {
         return Color.color(red, green, blue, opacity);
     }
 
-    private Background createBackground(Color color1, Color color2) {
+    private Background createBackground(Color color1, Color color2,Color color3) {
+
         return Background.fill(new LinearGradient(
-                0, 0,          // 起点坐标
-                1, 1,          // 终点坐标
+                1, 0.5,          // 起点坐标
+                0, 0.5,          // 终点坐标
                 true,         // 使用比例
                 CycleMethod.NO_CYCLE, // 不循环
                 new Stop(0, color1), // 起点位置和颜色
-                new Stop(1, color2) // 终点位置和颜色
+                new Stop(1, color3) // 终点位置和颜色
         ));
     }
 }
