@@ -43,16 +43,16 @@ public class LoginController extends ControlledStage implements Initializable {
         // 启动动画
         animation.play();
         img_login.setOnMouseClicked(mouseEvent -> {
-            myController.setStage(baseViewID);
-            myController.getStage(MainApp.loginViewID).close();
+//            myController.setStage(baseViewID);
+//            myController.getStage(MainApp.loginViewID).close();
             loginViewModel.login(input_account.getText(), input_password.getText());
         });
         loginViewModel.user.subscribe(new OnNextObserver<User>() {
             @Override
             public void onNext(User user) {
-//                MainApp.stageController.loadStage(baseViewID, baseViewRes, baseViewCss, StageStyle.UTILITY);
-//                myController.setStage(baseViewID);
-//                myController.getStage(MainApp.loginViewID).close();
+                MainApp.stageController.loadStage(baseViewID, baseViewRes, baseViewCss, StageStyle.UTILITY);
+                myController.setStage(baseViewID);
+                myController.getStage(MainApp.loginViewID).close();
             }
         });
     }

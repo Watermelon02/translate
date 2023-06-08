@@ -22,7 +22,7 @@ public class ViewController {
     }
 
     // 加载child.fxml作为子节点
-    public void replaceChildIntoTranslate(String name, String childFXML) {
+    public void addChild(String name, String childFXML) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(childFXML));
             Pane child = loader.load();

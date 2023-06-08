@@ -41,10 +41,10 @@ public class BaseController extends ControlledStage implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BaseViewModel viewModel = (BaseViewModel) ViewModelController.getInstance().getViewModel(baseViewID);
         ViewController viewController = new ViewController(container);
-        viewController.replaceChildIntoTranslate(translateViewID, translateViewRES);
-        viewController.replaceChildIntoTranslate(reciteViewID, reciteViewRES);
-        viewController.replaceChildIntoTranslate(profileViewID, profileViewRES);
-        viewController.replaceChildIntoTranslate(vocabularyViewID, vocabularyViewRes);
+        viewController.addChild(translateViewID, translateViewRES);
+        viewController.addChild(reciteViewID, reciteViewRES);
+        viewController.addChild(profileViewID, profileViewRES);
+        viewController.addChild(vocabularyViewID, vocabularyViewRes);
         viewController.loadChild(translateViewID);
         img_close.setOnMouseClicked(mouseEvent -> {
             //关闭窗口，相当于点击窗口关闭图标
