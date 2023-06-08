@@ -10,7 +10,6 @@ public class User {
     private int learningDays;
     private int vocabulary;
     private String role;
-
     private Image profileImage;
     private String name;
 
@@ -19,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(long userId, String account, String password, int level, int learningDays, int vocabulary,String role,Image profileImage,String name) {
+    public User(long userId, String account, String password, int level, int learningDays, int vocabulary, String role, Image profileImage, String name) {
         this.userId = userId;
         this.account = account;
         this.password = password;
@@ -29,6 +28,7 @@ public class User {
         this.role = role;
         this.name = name;
         this.profileImage = profileImage;
+
     }
 
     public long getUserId() {
@@ -95,4 +95,5 @@ public class User {
         this.profileImage = profileImage;
     }
 }
+
 
