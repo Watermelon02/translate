@@ -4,6 +4,7 @@ import com.experiment.translate.ControlledStage;
 import com.experiment.translate.repository.bean.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,8 +35,13 @@ public class ProfileController extends ControlledStage implements Initializable 
 
 
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         profileImage.setOnMouseClicked(mouseEvent -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("选择头像文件");
@@ -68,6 +74,7 @@ public class ProfileController extends ControlledStage implements Initializable 
             }
 
         });
+
     }
     private void updateNickname(String newNickname) {
         // 将新昵称应用于用户对象或数据模型
@@ -85,4 +92,7 @@ public class ProfileController extends ControlledStage implements Initializable 
         // 更新界面上显示昵称的元素
         profileImage.setImage(newImage);
     }
+
+
+
 }
