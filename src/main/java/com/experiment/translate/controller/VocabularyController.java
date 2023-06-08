@@ -169,6 +169,7 @@ public class VocabularyController extends ControlledStage implements Initializab
             Media wordMedia = new Media(word.getUkSpeech());
             mediaPlayer = new MediaPlayer(wordMedia);
             btn_speech_play.setOnMouseClicked(event -> {
+                mediaPlayer.stop();
                 mediaPlayer.play();
             });
             StringBuilder sb = new StringBuilder();

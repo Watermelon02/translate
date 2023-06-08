@@ -10,78 +10,93 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="560.0" maxWidth="520.0" minHeight="560.0" minWidth="520.0" prefHeight="560.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.TranslateController">
+<VBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.experiment.translate.controller.TranslateController">
     <children>
-        <VBox prefHeight="400.0" prefWidth="300.0" spacing="10.0">
-            <children>
-                <HBox prefHeight="40.0" prefWidth="254.0" spacing="10">
-                    <children>
-                        <VBox alignment="CENTER" maxWidth="209.0" minWidth="100.0" prefHeight="39.0" prefWidth="114.0" styleClass="background-selected-btn">
-                            <children>
-                                <Text fill="#2233e1" strokeType="OUTSIDE" strokeWidth="0.0" text="English" textAlignment="CENTER" wrappingWidth="121.0">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </Text>
-                            </children>
-                        </VBox>
-                        <ChoiceBox fx:id="translate_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="150.0">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </ChoiceBox>
-                    </children>
-                </HBox>
-                <TextArea fx:id="text_input" maxWidth="245.0" minWidth="245.0" prefHeight="480.0" prefWidth="245.0" promptText="请输入文字、文档、网址或粘连图片 即可翻译" wrapText="true" />
-                <VBox fx:id="from_btn" alignment="CENTER" maxWidth="40.0" minWidth="40.0" prefHeight="0.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                    <children>
-                        <ImageView fitHeight="36.0" fitWidth="36.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@com.experiment.translate.img/声音.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </VBox>
-            </children>
-            <HBox.margin>
-                <Insets right="10.0" />
-            </HBox.margin>
-        </VBox>
-        <VBox prefHeight="400.0" prefWidth="310.0" spacing="10.0">
-            <children>
-                <HBox prefHeight="40.0" prefWidth="254.0">
-                    <children>
-                        <VBox fx:id="translate_btn" alignment="CENTER" maxWidth="209.0" minWidth="100.0" prefHeight="39.0" prefWidth="114.0" styleClass="background-translate-btn">
-                            <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Translate" textAlignment="CENTER" wrappingWidth="121.0">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </Text>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <TextArea fx:id="text_output" editable="false" focusTraversable="false" prefHeight="480.0" prefWidth="295.0" wrapText="true" />
-                <HBox fx:id="to_btn" alignment="CENTER" maxWidth="40.0" minWidth="40.0" prefHeight="36.0" prefWidth="40.0" styleClass="translate-background-vbox">
-                    <children>
-                        <ImageView fitHeight="36.0" fitWidth="36.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@com.experiment.translate.img/声音.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </HBox>
-            </children>
-            <HBox.margin>
-                <Insets left="10.0" />
-            </HBox.margin>
-        </VBox>
+           <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="254.0" spacing="10">
+               <children>
+                   <VBox alignment="CENTER" maxHeight="30.0" maxWidth="209.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="114.0" styleClass="background-selected-btn">
+                       <children>
+                           <Text fx:id="text_translate_mode" fill="#2233e1" strokeType="OUTSIDE" strokeWidth="0.0" text="English" textAlignment="CENTER" wrappingWidth="121.0">
+                               <font>
+                                   <Font size="16.0" />
+                               </font>
+                               <VBox.margin>
+                                   <Insets />
+                               </VBox.margin>
+                           </Text>
+                       </children>
+                   </VBox>
+                   <ChoiceBox fx:id="translate_choice" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="120.0">
+                       <VBox.margin>
+                           <Insets />
+                       </VBox.margin>
+                   </ChoiceBox>
+                 <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="254.0">
+                     <children>
+                         <VBox fx:id="translate_btn" alignment="CENTER" maxWidth="209.0" minWidth="100.0" prefHeight="39.0" prefWidth="114.0" styleClass="background-translate-btn">
+                             <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Translate" textAlignment="CENTER" wrappingWidth="121.0">
+                                     <font>
+                                         <Font size="16.0" />
+                                     </font>
+                                     <VBox.margin>
+                                         <Insets />
+                                     </VBox.margin>
+                                 </Text>
+                             </children>
+                         </VBox>
+                     </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+                 </HBox>
+               </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+           </HBox>
+        <HBox maxHeight="560.0" maxWidth="520.0" minHeight="479.0" minWidth="520.0" prefHeight="483.0" prefWidth="520.0">
+            <VBox maxHeight="480.0" minHeight="480.0" prefHeight="400.0" prefWidth="245.0" spacing="10.0">
+                <children>
+                    <TextArea fx:id="text_input" maxWidth="245.0" minWidth="245.0" prefHeight="480.0" prefWidth="245.0" promptText="请输入文字、文档、网址或粘连图片 即可翻译" wrapText="true" />
+                </children>
+                <HBox.margin>
+                    <Insets right="10.0" />
+                </HBox.margin>
+            </VBox>
+            <VBox fx:id="translate_parent" maxHeight="480.0" minHeight="480.0" prefHeight="400.0" prefWidth="310.0" spacing="10.0">
+                <children>
+                    <TextArea fx:id="text_output" editable="false" focusTraversable="false" prefHeight="480.0" prefWidth="295.0" wrapText="true" />
+                </children>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            </VBox>
+        </HBox>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="31.0" prefWidth="546.0" spacing="220.0">
+         <children>
+                 <VBox fx:id="from_btn" alignment="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="267.0" styleClass="translate-background-vbox">
+                     <children>
+                         <ImageView fitHeight="36.0" fitWidth="36.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@com.experiment.translate.img/声音 (1).png" />
+                             </image>
+                         </ImageView>
+                     </children>
+                 </VBox>
+                 <HBox fx:id="to_btn" alignment="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="11.0" styleClass="translate-background-vbox">
+                     <children>
+                         <ImageView fitHeight="36.0" fitWidth="36.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@com.experiment.translate.img/声音 (1).png" />
+                             </image>
+                         </ImageView>
+                     </children>
+                 </HBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
     </children>
-</HBox>
+</VBox>

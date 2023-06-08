@@ -20,6 +20,8 @@ public class MainApp extends Application {
     public static String profileViewRES = "/profile-view.fxml";
     public static String vocabularyViewID = "VocabularyView";
     public static String vocabularyViewRes = "/vocabulary-view.fxml";
+    public static String wordViewRes = "/word-view.fxml";
+    public static String passageViewRes = "/passage-view.fxml";
 
     public static StageController stageController;
     public static long userId = 1;
@@ -35,6 +37,7 @@ public class MainApp extends Application {
 
         //加载登录stage，每个界面一个舞台
         stageController.loadStage(loginViewID, loginViewRes, StageStyle.UTILITY);
+        stageController.loadStage(baseViewID, baseViewRes, baseViewCss, StageStyle.UTILITY);
 
         //显示loginView舞台
         stageController.setStage(loginViewID);

@@ -8,6 +8,9 @@ public class Flow<T> extends Observable<T> {
     FlowEmitter<T> parent;
 
     public Observable<T> onNext(T t) {
+        if (parent == null) {
+            parent = new FlowEmitter<>();
+        }
         parent.onNext(t);
         return this;
     }

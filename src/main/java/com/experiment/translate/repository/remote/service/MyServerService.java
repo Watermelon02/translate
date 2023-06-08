@@ -2,7 +2,6 @@ package com.experiment.translate.repository.remote.service;
 
 import com.experiment.lib_react.observable.Observable;
 import com.experiment.lib_retrofit.RetrofitBuilder;
-import com.experiment.translate.repository.bean.Result;
 import com.experiment.translate.repository.bean.User;
 import com.experiment.translate.repository.bean.Word;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TextArea?>
+<VBox maxWidth="280.0" minWidth="280.0"  prefWidth="280.0" maxHeight="480"
+      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.experiment.translate.controller.PassageController">
+    <TextArea fx:id="passage_text_input" maxWidth="245.0" minWidth="245.0" prefHeight="480.0" prefWidth="245.0" promptText="请输入文字、文档、网址或粘连图片 即可翻译" wrapText="true" />
+</VBox>
